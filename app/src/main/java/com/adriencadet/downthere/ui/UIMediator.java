@@ -1,5 +1,6 @@
 package com.adriencadet.downthere.ui;
 
+import com.adriencadet.downthere.models.bll.BLLFactory;
 import com.adriencadet.downthere.models.bll.IDataReadingBLL;
 
 import org.greenrobot.eventbus.EventBus;
@@ -21,6 +22,6 @@ public class UIMediator {
     }
 
     public static IDataReadingBLL getDataReadingBLL() {
-        return null;
+        return BLLFactory.buildDataReadingBLL();
     }
 }

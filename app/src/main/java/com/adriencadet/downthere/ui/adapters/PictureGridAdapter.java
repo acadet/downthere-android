@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.models.dao.dto.PictureDAODTO;
+import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.coshx.chocolatine.widgets.SmartAdapter;
 import com.squareup.picasso.Picasso;
 
@@ -16,8 +16,8 @@ import java.util.List;
  * PictureGridAdapter
  * <p>
  */
-public class PictureGridAdapter extends SmartAdapter<PictureDAODTO> {
-    public PictureGridAdapter(List<PictureDAODTO> items, Context context) {
+public class PictureGridAdapter extends SmartAdapter<PictureBLLDTO> {
+    public PictureGridAdapter(List<PictureBLLDTO> items, Context context) {
         super(items, context);
     }
 

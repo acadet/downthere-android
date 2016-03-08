@@ -8,7 +8,7 @@ public class DownthereServerFactory {
     private static IDownthereServer server;
     private static final Object serverLock = new Object();
 
-    public IDownthereServer build() {
+    public static IDownthereServer build() {
         if (server == null) {
             synchronized (serverLock) {
                 if (server == null) {

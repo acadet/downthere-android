@@ -1,6 +1,6 @@
 package com.adriencadet.downthere.models.bll;
 
-import com.adriencadet.downthere.models.dao.dto.PictureDAODTO;
+import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 
 import java.util.List;
 
@@ -11,5 +11,5 @@ import rx.Observable;
  * <p>
  */
 public interface IDataReadingBLL {
-    Observable<List<PictureDAODTO>> listPicturesByDateDesc();
+    Observable<List<PictureBLLDTO>> listPicturesByDateDesc();
 }

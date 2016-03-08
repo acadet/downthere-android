@@ -23,7 +23,7 @@ class DownthereServer implements IDownthereServer {
 
     @Override
     public Observable<List<PictureBLLDTO>> listPicturesByDateDesc() {
-        if (listPicturesByDateDescObservable != null) {
+        if (listPicturesByDateDescObservable == null) {
             listPicturesByDateDescObservable = Observable
                 .create(new Observable.OnSubscribe<List<PictureBLLDTO>>() {
                     @Override
@@ -49,9 +49,8 @@ class DownthereServer implements IDownthereServer {
                                         })
                                         .collect(Collectors.toList())
                                 );
-                            }).endWith((List<PictureBLLDTO> list) -> {
-                            subscriber.onNext(list);
-                        });
+                            })
+                            .endWith((list) -> subscriber.onNext(list));
 
                     }
                 })

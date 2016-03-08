@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.models.dao.dto.PictureDAODTO;
+import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.ui.UIMediator;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
 
@@ -46,9 +46,9 @@ public class PictureGridFragment extends BaseFragment {
                 .getDataReadingBLL()
                 .listPicturesByDateDesc()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<PictureDAODTO>>() {
+                .subscribe(new Subscriber<List<PictureBLLDTO>>() {
                     @Override
-                    public void onNext(List<PictureDAODTO> pictureDAODTOs) {
+                    public void onNext(List<PictureBLLDTO> pictureDAODTOs) {
                         gridView.setAdapter(new PictureGridAdapter(pictureDAODTOs, getActivity()));
                     }
                 });
