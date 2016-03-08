@@ -4,6 +4,11 @@ android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
+    compileOptions { // For lambda functions
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.adriencadet.downthere"
         minSdkVersion 15
@@ -23,4 +28,33 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.github.coshx:chocolatine:v0.5.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'io.realm:realm-android:0.87.4'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'joda-time:joda-time:2.9.2'
+    compile 'com.annimon:stream:1.0.6'
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+        // exclusion is not necessary, but generally a good idea.
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
+    compile 'com.github.castorflex.smoothprogressbar:library-circular:1.2.0'
 }
+
+// Lambda functions
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:2.5.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'me.tatarka.retrolambda'
