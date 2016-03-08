@@ -1,9 +1,10 @@
-package com.adriencadet.downthere;
+package com.adriencadet.downthere.ui.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.adriencadet.downthere.R;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
