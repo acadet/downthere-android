@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/FooterFragmentWrapper">
+
+    <ImageView
+        android:id="@+id/footer_fragment_picture_icon"
+        style="@style/FooterFragmentIcon"
+        />
+
+    <ImageView
+        android:id="@+id/footer_fragment_text_file_icon"
+        style="@style/FooterFragmentIcon"
+        />
+
+</LinearLayout>
