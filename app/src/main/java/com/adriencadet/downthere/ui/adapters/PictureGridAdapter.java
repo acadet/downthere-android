@@ -3,6 +3,7 @@ package com.adriencadet.downthere.ui.adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.adriencadet.downthere.R;
@@ -35,6 +36,8 @@ public class PictureGridAdapter extends BaseAdapter<PictureBLLDTO> {
         embeddedPicture = (ImageView) view.findViewById(R.id.adapter_picture_grid_picture);
 
         int width = getContext().getResources().getDisplayMetrics().widthPixels / 3;
+
+        embeddedPicture.setLayoutParams(new FrameLayout.LayoutParams(width, width));
 
         Picasso
             .with(getContext())
