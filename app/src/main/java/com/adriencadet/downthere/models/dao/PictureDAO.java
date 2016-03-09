@@ -29,6 +29,7 @@ class PictureDAO extends BaseDAO implements IPictureDAO {
         Realm dal = getDAL();
 
         dal.beginTransaction();
+        dal.allObjects(PictureDAODTO.class).clear();
         dal.copyToRealm(list);
         dal.commitTransaction();
     }

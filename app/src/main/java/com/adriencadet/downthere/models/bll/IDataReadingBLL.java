@@ -12,4 +12,6 @@ import rx.Observable;
  */
 public interface IDataReadingBLL {
     Observable<List<PictureBLLDTO>> listPicturesByDateDesc();
+
+    Observable<List<PictureBLLDTO>> refreshPicturesByDateDesc();
 }

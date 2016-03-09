@@ -51,7 +51,10 @@ class DownthereServer implements IDownthereServer {
                                         .collect(Collectors.toList())
                                 );
                             })
-                            .endWith((list) -> subscriber.onNext(list));
+                            .endWith((list) -> {
+                                subscriber.onNext(list);
+                                subscriber.onCompleted();
+                            });
 
                     }
                 })

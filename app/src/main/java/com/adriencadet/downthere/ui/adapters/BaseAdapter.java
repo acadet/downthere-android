@@ -50,4 +50,9 @@ abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
+    public void setItems(List<T> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
 }

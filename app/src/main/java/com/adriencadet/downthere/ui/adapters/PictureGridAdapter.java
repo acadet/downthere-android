@@ -9,6 +9,7 @@ import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ import java.util.List;
  * <p>
  */
 public class PictureGridAdapter extends BaseAdapter<PictureBLLDTO> {
+
+    public PictureGridAdapter(Context context) {
+        this(context, new ArrayList<>());
+    }
 
     public PictureGridAdapter(Context context, List<PictureBLLDTO> items) {
         super(context, items);

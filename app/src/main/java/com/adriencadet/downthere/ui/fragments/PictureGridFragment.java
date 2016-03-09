@@ -29,6 +29,8 @@ public class PictureGridFragment extends BaseFragment {
 
     private Subscription listPicturesByDateDescSubscription;
 
+    private PictureGridAdapter gridAdapter;
+
     @Bind(R.id.picture_grid_fragment_no_content)
     TextView noMessageView;
 
@@ -46,6 +48,9 @@ public class PictureGridFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_picture_grid, container, false);
         ButterKnife.bind(this, view);
 
+        gridAdapter = new PictureGridAdapter(getActivity());
+        gridView.setAdapter(gridAdapter);
+
         if (listPicturesByDateDescSubscription != null) {
             listPicturesByDateDescSubscription.unsubscribe();
         }
@@ -56,12 +61,12 @@ public class PictureGridFragment extends BaseFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<PictureBLLDTO>>() {
                     @Override
-                    public void onNext(List<PictureBLLDTO> pictureDAODTOs) {
-                        if (pictureDAODTOs.isEmpty()) {
+                    public void onNext(List<PictureBLLDTO> pictures) {
+                        if (pictures.isEmpty()) {
                             gridViewWrapper.setVisibility(View.GONE);
                             noMessageView.setVisibility(View.VISIBLE);
                         } else {
-                            gridView.setAdapter(new PictureGridAdapter(getActivity(), pictureDAODTOs));
+                            gridAdapter.setItems(pictures);
                             gridViewWrapper.setVisibility(View.VISIBLE);
                             noMessageView.setVisibility(View.GONE);
                         }
@@ -75,16 +80,16 @@ public class PictureGridFragment extends BaseFragment {
 
             listPicturesByDateDescSubscription = UIMediator
                 .getDataReadingBLL()
-                .listPicturesByDateDesc()
+                .refreshPicturesByDateDesc()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<PictureBLLDTO>>() {
                     @Override
-                    public void onNext(List<PictureBLLDTO> pictureDAODTOs) {
-                        if (pictureDAODTOs.isEmpty()) {
+                    public void onNext(List<PictureBLLDTO> pictures) {
+                        if (pictures.isEmpty()) {
                             gridViewWrapper.setVisibility(View.GONE);
                             noMessageView.setVisibility(View.VISIBLE);
                         } else {
-                            gridView.setAdapter(new PictureGridAdapter(getActivity(), pictureDAODTOs));
+                            gridAdapter.setItems(pictures);
                         }
                         gridViewWrapper.setRefreshing(false);
                     }
