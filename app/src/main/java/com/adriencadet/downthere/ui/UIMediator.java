@@ -21,12 +21,23 @@ public class UIMediator {
             .sendNoSubscriberEvent(false)
             .build();
 
+    private static final EventBus popupBus =
+        EventBus
+            .builder()
+            .logNoSubscriberMessages(false)
+            .sendNoSubscriberEvent(false)
+            .build();
+
     public static void setContext(Context context) {
         UIMediator.context = context;
     }
 
     public static EventBus getSegueBus() {
         return segueBus;
+    }
+
+    public static EventBus getPopupBus() {
+        return popupBus;
     }
 
     public static IDataReadingBLL getDataReadingBLL() {

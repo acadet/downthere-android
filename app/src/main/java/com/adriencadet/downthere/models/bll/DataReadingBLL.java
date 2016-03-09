@@ -55,7 +55,7 @@ class DataReadingBLL implements IDataReadingBLL {
                                     public void onError(Throwable e) {
                                         if (e instanceof DownthereServerErrors.NoConnection) {
                                             subscriber.onNext(PictureBLLDTOSerializer.fromDAO(pictureDAO.listByDateDesc()));
-                                            subscriber.onCompleted();
+                                            subscriber.onError(new BLLErrors.NoConnection());
                                         } else {
                                             subscriber.onError(e);
                                         }

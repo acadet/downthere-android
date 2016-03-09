@@ -3,6 +3,9 @@ package com.adriencadet.downthere.ui.fragments;
 import android.app.Fragment;
 import android.util.Log;
 
+import com.adriencadet.downthere.ui.UIMediator;
+import com.adriencadet.downthere.ui.events.PopupEvents;
+
 /**
  * BaseFragment
  * <p>
@@ -21,7 +24,16 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    public void alert(String message) {
+    public void inform(String message) {
+        UIMediator.getPopupBus().post(new PopupEvents.Info(message));
+    }
 
+    public void confirm(String message) {
+        UIMediator.getPopupBus().post(new PopupEvents.Confirm(message));
+
+    }
+
+    public void alert(String message) {
+        UIMediator.getPopupBus().post(new PopupEvents.Alert(message));
     }
 }

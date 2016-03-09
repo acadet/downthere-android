@@ -10,6 +10,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.adriencadet.downthere.R;
+import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.ui.UIMediator;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
@@ -71,6 +72,16 @@ public class PictureGridFragment extends BaseFragment {
                             noMessageView.setVisibility(View.GONE);
                         }
                     }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (e instanceof BLLErrors.NoConnection) {
+                            inform(getString(R.string.no_connection_error));
+                        } else {
+                            alert(e.getMessage());
+                        }
+                    }
                 });
 
         gridViewWrapper.setOnRefreshListener(() -> {
@@ -90,6 +101,22 @@ public class PictureGridFragment extends BaseFragment {
                             noMessageView.setVisibility(View.VISIBLE);
                         } else {
                             gridAdapter.setItems(pictures);
+                        }
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        gridViewWrapper.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        if (e instanceof BLLErrors.NoConnection) {
+                            inform(getString(R.string.no_connection_error));
+                        } else {
+                            alert(e.getMessage());
                         }
                         gridViewWrapper.setRefreshing(false);
                     }
