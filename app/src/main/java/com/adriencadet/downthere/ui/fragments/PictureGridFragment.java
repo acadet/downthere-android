@@ -61,7 +61,7 @@ public class PictureGridFragment extends BaseFragment {
                             gridViewWrapper.setVisibility(View.GONE);
                             noMessageView.setVisibility(View.VISIBLE);
                         } else {
-                            gridView.setAdapter(new PictureGridAdapter(pictureDAODTOs, getActivity()));
+                            gridView.setAdapter(new PictureGridAdapter(getActivity(), pictureDAODTOs));
                             gridViewWrapper.setVisibility(View.VISIBLE);
                             noMessageView.setVisibility(View.GONE);
                         }
@@ -84,7 +84,7 @@ public class PictureGridFragment extends BaseFragment {
                             gridViewWrapper.setVisibility(View.GONE);
                             noMessageView.setVisibility(View.VISIBLE);
                         } else {
-                            gridView.setAdapter(new PictureGridAdapter(pictureDAODTOs, getActivity()));
+                            gridView.setAdapter(new PictureGridAdapter(getActivity(), pictureDAODTOs));
                         }
                         gridViewWrapper.setRefreshing(false);
                     }

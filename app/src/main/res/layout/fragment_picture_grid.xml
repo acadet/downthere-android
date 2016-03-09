@@ -19,7 +19,8 @@
 
         <GridView
             android:id="@+id/picture_grid_fragment_grid"
-            android:numColumns="auto_fit"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
             style="@style/MatchParentWrapContent"
             />
 
