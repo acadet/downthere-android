@@ -55,6 +55,8 @@ public class PictureGridFragment extends BaseFragment {
         if (listPicturesByDateDescSubscription != null) {
             listPicturesByDateDescSubscription.unsubscribe();
         }
+
+        showSpinner();
         listPicturesByDateDescSubscription =
             UIMediator
                 .getDataReadingBLL()
@@ -74,6 +76,12 @@ public class PictureGridFragment extends BaseFragment {
                     }
 
                     @Override
+                    public void onCompleted() {
+                        super.onCompleted();
+                        hideSpinner();
+                    }
+
+                    @Override
                     public void onError(Throwable e) {
                         super.onError(e);
                         if (e instanceof BLLErrors.NoConnection) {
@@ -81,6 +89,7 @@ public class PictureGridFragment extends BaseFragment {
                         } else {
                             alert(e.getMessage());
                         }
+                        hideSpinner();
                     }
                 });
 
@@ -88,6 +97,8 @@ public class PictureGridFragment extends BaseFragment {
             if (listPicturesByDateDescSubscription != null) {
                 listPicturesByDateDescSubscription.unsubscribe();
             }
+
+            showSpinner();
 
             listPicturesByDateDescSubscription = UIMediator
                 .getDataReadingBLL()
@@ -108,6 +119,7 @@ public class PictureGridFragment extends BaseFragment {
                     public void onCompleted() {
                         super.onCompleted();
                         gridViewWrapper.setRefreshing(false);
+                        hideSpinner();
                     }
 
                     @Override
@@ -119,6 +131,7 @@ public class PictureGridFragment extends BaseFragment {
                             alert(e.getMessage());
                         }
                         gridViewWrapper.setRefreshing(false);
+                        hideSpinner();
                     }
                 });
         });

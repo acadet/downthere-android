@@ -5,6 +5,9 @@ package com.adriencadet.downthere.ui.events;
  * <p>
  */
 public class PopupEvents {
+    private PopupEvents() {
+    }
+
     static class PopupEvent {
         public String message;
 

@@ -28,6 +28,13 @@ public class UIMediator {
             .sendNoSubscriberEvent(false)
             .build();
 
+    private static final EventBus spinnerBus =
+        EventBus
+            .builder()
+            .logNoSubscriberMessages(false)
+            .sendNoSubscriberEvent(false)
+            .build();
+
     public static void setContext(Context context) {
         UIMediator.context = context;
     }
@@ -38,6 +45,10 @@ public class UIMediator {
 
     public static EventBus getPopupBus() {
         return popupBus;
+    }
+
+    public static EventBus getSpinnerBus() {
+        return spinnerBus;
     }
 
     public static IDataReadingBLL getDataReadingBLL() {

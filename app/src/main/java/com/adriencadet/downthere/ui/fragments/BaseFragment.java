@@ -1,10 +1,10 @@
 package com.adriencadet.downthere.ui.fragments;
 
 import android.app.Fragment;
-import android.util.Log;
 
 import com.adriencadet.downthere.ui.UIMediator;
 import com.adriencadet.downthere.ui.events.PopupEvents;
+import com.adriencadet.downthere.ui.events.SpinnerEvents;
 
 /**
  * BaseFragment
@@ -19,8 +19,6 @@ public abstract class BaseFragment extends Fragment {
 
         @Override
         public void onError(Throwable e) {
-            Log.e("BaseFragment", "Observable raised an error", e);
-            alert(e.getMessage());
         }
     }
 
@@ -35,5 +33,13 @@ public abstract class BaseFragment extends Fragment {
 
     public void alert(String message) {
         UIMediator.getPopupBus().post(new PopupEvents.Alert(message));
+    }
+
+    public void showSpinner() {
+        UIMediator.getSpinnerBus().post(new SpinnerEvents.Show());
+    }
+
+    public void hideSpinner() {
+        UIMediator.getSpinnerBus().post(new SpinnerEvents.Hide());
     }
 }

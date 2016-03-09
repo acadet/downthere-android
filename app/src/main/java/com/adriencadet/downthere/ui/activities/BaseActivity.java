@@ -6,7 +6,9 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.adriencadet.downthere.ui.UIMediator;
+import com.adriencadet.downthere.ui.components.Spinner;
 import com.adriencadet.downthere.ui.events.PopupEvents;
+import com.adriencadet.downthere.ui.events.SpinnerEvents;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -22,6 +24,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  * <p>
  */
 public abstract class BaseActivity extends Activity {
+    private Spinner spinner;
 
     protected void setFragment(int resourceId, Fragment fragment) {
         getFragmentManager()
@@ -54,15 +57,22 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         UIMediator.getSegueBus().register(this);
         UIMediator.getPopupBus().register(this);
+        UIMediator.getSpinnerBus().register(this);
+
+        spinner = new Spinner(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        
         UIMediator.getSegueBus().unregister(this);
         UIMediator.getPopupBus().unregister(this);
+        UIMediator.getSpinnerBus().unregister(this);
+
         Crouton.cancelAllCroutons();
     }
 
@@ -73,20 +83,35 @@ public abstract class BaseActivity extends Activity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPopup(PopupEvents.Confirm e) {
+    public void onPopupEvent(PopupEvents.Confirm e) {
         Crouton.cancelAllCroutons();
         Crouton.makeText(this, e.message, Style.CONFIRM).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPopup(PopupEvents.Info e) {
+    public void onPopupEvent(PopupEvents.Info e) {
         Crouton.cancelAllCroutons();
         Crouton.makeText(this, e.message, Style.INFO).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPopup(PopupEvents.Alert e) {
+    public void onPopupEvent(PopupEvents.Alert e) {
         Crouton.cancelAllCroutons();
         Crouton.makeText(this, e.message, Style.ALERT).show();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSpinnerEvent(SpinnerEvents.Show e) {
+        spinner.show();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSpinnerEvent(SpinnerEvents.ShowImmediately e) {
+        spinner.show(false);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSpinnerEvent(SpinnerEvents.Hide e) {
+        spinner.hide();
     }
 }
