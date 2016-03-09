@@ -10,11 +10,19 @@
         style="@style/NoContentPictureGrid"
         />
 
-    <GridView
-        android:id="@+id/picture_grid_fragment_grid"
-        android:numColumns="auto_fit"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/picture_grid_fragment_grid_wrapper"
         android:visibility="gone"
-        style="@style/MatchParentWrapContent"
-        />
+        style="@style/MatchParent"
+        >
+
+        <GridView
+            android:id="@+id/picture_grid_fragment_grid"
+            android:numColumns="auto_fit"
+            style="@style/MatchParentWrapContent"
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

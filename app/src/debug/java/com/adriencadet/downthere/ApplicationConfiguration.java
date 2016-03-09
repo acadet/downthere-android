@@ -5,5 +5,5 @@ package com.adriencadet.downthere;
  * <p>
  */
 public class ApplicationConfiguration {
-    public static final String SERVER_ENDPOINT = "http://www42959.coshx.com/";
+    public static final String SERVER_ENDPOINT = "http://www42959.coshx.com";
 }
