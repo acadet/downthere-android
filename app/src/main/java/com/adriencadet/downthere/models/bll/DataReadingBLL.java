@@ -2,6 +2,7 @@ package com.adriencadet.downthere.models.bll;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.dao.IPictureDAO;
+import com.adriencadet.downthere.models.downthereserver.DownthereServerErrors;
 import com.adriencadet.downthere.models.downthereserver.IDownthereServer;
 
 import org.joda.time.DateTime;
@@ -52,7 +53,12 @@ class DataReadingBLL implements IDataReadingBLL {
 
                                     @Override
                                     public void onError(Throwable e) {
-                                        subscriber.onError(e);
+                                        if (e instanceof DownthereServerErrors.NoConnection) {
+                                            subscriber.onNext(PictureBLLDTOSerializer.fromDAO(pictureDAO.listByDateDesc()));
+                                            subscriber.onCompleted();
+                                        } else {
+                                            subscriber.onError(e);
+                                        }
                                     }
 
                                     @Override
