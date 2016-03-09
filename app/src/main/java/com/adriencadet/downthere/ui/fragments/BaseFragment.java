@@ -1,6 +1,7 @@
 package com.adriencadet.downthere.ui.fragments;
 
 import android.app.Fragment;
+import android.util.Log;
 
 /**
  * BaseFragment
@@ -15,6 +16,7 @@ public abstract class BaseFragment extends Fragment {
 
         @Override
         public void onError(Throwable e) {
+            Log.e("BaseFragment", "Observable raised an error", e);
             alert(e.getMessage());
         }
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
@@ -26,6 +27,9 @@ import rx.android.schedulers.AndroidSchedulers;
 public class PictureGridFragment extends BaseFragment {
 
     private Subscription listPicturesByDateDescSubscription;
+
+    @Bind(R.id.picture_grid_fragment_no_content)
+    TextView noMessageView;
 
     @Bind(R.id.picture_grid_fragment_grid)
     GridView gridView;
@@ -49,7 +53,14 @@ public class PictureGridFragment extends BaseFragment {
                 .subscribe(new Subscriber<List<PictureBLLDTO>>() {
                     @Override
                     public void onNext(List<PictureBLLDTO> pictureDAODTOs) {
-                        gridView.setAdapter(new PictureGridAdapter(pictureDAODTOs, getActivity()));
+                        if (pictureDAODTOs.isEmpty()) {
+                            gridView.setVisibility(View.GONE);
+                            noMessageView.setVisibility(View.VISIBLE);
+                        } else {
+                            gridView.setAdapter(new PictureGridAdapter(pictureDAODTOs, getActivity()));
+                            gridView.setVisibility(View.VISIBLE);
+                            noMessageView.setVisibility(View.GONE);
+                        }
                     }
                 });
 

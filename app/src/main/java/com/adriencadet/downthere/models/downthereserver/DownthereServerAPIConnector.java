@@ -1,5 +1,7 @@
 package com.adriencadet.downthere.models.downthereserver;
 
+import android.util.Log;
+
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.coshx.chocolatine.utils.actions.Action;
 import com.coshx.chocolatine.utils.actions.Action0;
@@ -23,6 +25,7 @@ class DownthereServerAPIConnector {
 
             onSuccess.run(outcome);
         } catch (Exception e) {
+            Log.e("DownthereServerAPIConne", "Failed to initialize a connection", e);
             onFailure.run();
         }
     }

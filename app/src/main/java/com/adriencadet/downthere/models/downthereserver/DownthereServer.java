@@ -1,5 +1,6 @@
 package com.adriencadet.downthere.models.downthereserver;
 
+import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -43,7 +44,7 @@ class DownthereServer implements IDownthereServer {
                                             return new PictureBLLDTO()
                                                 .setId(a.id)
                                                 .setName(a.name)
-                                                .setAttachmentURL(a.attachment.url)
+                                                .setAttachmentURL(ApplicationConfiguration.SERVER_ENDPOINT + a.attachment.url)
                                                 .setCreatedAt(new DateTime(a.createdAt))
                                                 .setUpdatedAt(new DateTime(a.updatedAt));
                                         })
