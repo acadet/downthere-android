@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.TextView;
 
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.BLLErrors;
@@ -19,6 +18,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -32,14 +32,65 @@ public class PictureGridFragment extends BaseFragment {
 
     private PictureGridAdapter gridAdapter;
 
-    @Bind(R.id.picture_grid_fragment_no_content)
-    TextView noMessageView;
+    @Bind(R.id.picture_grid_fragment_no_content_wrapper)
+    View noMessageWrapper;
 
     @Bind(R.id.picture_grid_fragment_grid_wrapper)
     SwipeRefreshLayout gridViewWrapper;
 
     @Bind(R.id.picture_grid_fragment_grid)
     GridView gridView;
+
+    private void refresh(boolean hasCurrentlyNoContent) {
+        if (listPicturesByDateDescSubscription != null) {
+            listPicturesByDateDescSubscription.unsubscribe();
+        }
+
+        showSpinner();
+
+        listPicturesByDateDescSubscription = UIMediator
+            .getDataReadingBLL()
+            .refreshPicturesByDateDesc()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Subscriber<List<PictureBLLDTO>>() {
+                @Override
+                public void onNext(List<PictureBLLDTO> pictures) {
+                    if (pictures.isEmpty()) {
+                        gridViewWrapper.setVisibility(View.GONE);
+                        noMessageWrapper.setVisibility(View.VISIBLE);
+                    } else {
+                        gridAdapter.setItems(pictures);
+                        if (hasCurrentlyNoContent) {
+                            gridViewWrapper.setVisibility(View.VISIBLE);
+                            noMessageWrapper.setVisibility(View.GONE);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCompleted() {
+                    super.onCompleted();
+                    if (!hasCurrentlyNoContent) {
+                        gridViewWrapper.setRefreshing(false);
+                    }
+                    hideSpinner();
+                }
+
+                @Override
+                public void onError(Throwable e) {
+                    super.onError(e);
+                    if (e instanceof BLLErrors.NoConnection) {
+                        inform(getString(R.string.no_connection_error));
+                    } else {
+                        alert(e.getMessage());
+                    }
+                    if (!hasCurrentlyNoContent) {
+                        gridViewWrapper.setRefreshing(false);
+                    }
+                    hideSpinner();
+                }
+            });
+    }
 
     @Nullable
     @Override
@@ -67,11 +118,11 @@ public class PictureGridFragment extends BaseFragment {
                     public void onNext(List<PictureBLLDTO> pictures) {
                         if (pictures.isEmpty()) {
                             gridViewWrapper.setVisibility(View.GONE);
-                            noMessageView.setVisibility(View.VISIBLE);
+                            noMessageWrapper.setVisibility(View.VISIBLE);
                         } else {
                             gridAdapter.setItems(pictures);
                             gridViewWrapper.setVisibility(View.VISIBLE);
-                            noMessageView.setVisibility(View.GONE);
+                            noMessageWrapper.setVisibility(View.GONE);
                         }
                     }
 
@@ -93,48 +144,7 @@ public class PictureGridFragment extends BaseFragment {
                     }
                 });
 
-        gridViewWrapper.setOnRefreshListener(() -> {
-            if (listPicturesByDateDescSubscription != null) {
-                listPicturesByDateDescSubscription.unsubscribe();
-            }
-
-            showSpinner();
-
-            listPicturesByDateDescSubscription = UIMediator
-                .getDataReadingBLL()
-                .refreshPicturesByDateDesc()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<PictureBLLDTO>>() {
-                    @Override
-                    public void onNext(List<PictureBLLDTO> pictures) {
-                        if (pictures.isEmpty()) {
-                            gridViewWrapper.setVisibility(View.GONE);
-                            noMessageView.setVisibility(View.VISIBLE);
-                        } else {
-                            gridAdapter.setItems(pictures);
-                        }
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        super.onCompleted();
-                        gridViewWrapper.setRefreshing(false);
-                        hideSpinner();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        super.onError(e);
-                        if (e instanceof BLLErrors.NoConnection) {
-                            inform(getString(R.string.no_connection_error));
-                        } else {
-                            alert(e.getMessage());
-                        }
-                        gridViewWrapper.setRefreshing(false);
-                        hideSpinner();
-                    }
-                });
-        });
+        gridViewWrapper.setOnRefreshListener(() -> refresh(false));
 
         return view;
     }
@@ -145,5 +155,10 @@ public class PictureGridFragment extends BaseFragment {
         if (listPicturesByDateDescSubscription != null) {
             listPicturesByDateDescSubscription.unsubscribe();
         }
+    }
+
+    @OnClick(R.id.picture_grid_fragment_no_content_refresher)
+    public void onManualRefreshWhenNoContent() {
+        refresh(true);
     }
 }

@@ -8,4 +8,15 @@
         <item name="android:background">@color/blue</item>
     </style>
 
+    <style name="Button" parent="WrapContent">
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:padding">12dp</item>
+
+        <item name="android:textColor">@color/soft_grey</item>
+        <item name="android:textSize">@dimen/button</item>
+        <item name="android:textAllCaps">true</item>
+
+        <item name="android:background">@color/blue</item>
+    </style>
+
 </resources>

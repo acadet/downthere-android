@@ -4,13 +4,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
 
-    <TextView
-        android:id="@+id/picture_grid_fragment_no_content"
-        android:text="@string/no_content_picture_grid"
-        style="@style/NoContentPictureGrid"
-        />
+    <LinearLayout
+        android:id="@+id/picture_grid_fragment_no_content_wrapper"
+        style="@style/MatchParentWrapContent.Vertical"
+        >
 
-    <!--Add a button for refreshing-->
+        <TextView
+            android:text="@string/no_content_picture_grid"
+            style="@style/NoContentPictureGridFragment"
+            />
+
+        <Button
+            android:id="@+id/picture_grid_fragment_no_content_refresher"
+            android:text="@string/picture_grid_refresher"
+            style="@style/RefresherPictureGridFragment"
+            />
+
+    </LinearLayout>
 
 
     <android.support.v4.widget.SwipeRefreshLayout

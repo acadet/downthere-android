@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="NoContentPictureGrid" parent="MatchParentWrapContent">
+    <style name="NoContentPictureGridFragment" parent="MatchParentWrapContent">
         <item name="android:padding">10dp</item>
 
         <item name="android:gravity">center</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">@dimen/subhead</item>
         <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="RefresherPictureGridFragment" parent="Button">
+        <item name="android:layout_gravity">center</item>
     </style>
 </resources>

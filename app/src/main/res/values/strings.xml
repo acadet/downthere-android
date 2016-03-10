@@ -2,5 +2,7 @@
     <string name="app_name">Downthere</string>
 
     <string name="no_content_picture_grid">No pictures :(</string>
+    <string name="picture_grid_refresher">Refresh</string>
+
     <string name="no_connection_error">We are experiencing troubles with your connection</string>
 </resources>
