@@ -45,8 +45,8 @@ class DownthereServer implements IDownthereServer {
                                                 .setId(a.id)
                                                 .setName(a.name)
                                                 .setAttachmentURL(ApplicationConfiguration.SERVER_ENDPOINT + a.attachment.url)
-                                                .setCreatedAt(new DateTime(a.createdAt))
-                                                .setUpdatedAt(new DateTime(a.updatedAt));
+                                                .setCreatedAt(new DateTime(a.created_at))
+                                                .setUpdatedAt(new DateTime(a.updated_at));
                                         })
                                         .collect(Collectors.toList())
                                 );

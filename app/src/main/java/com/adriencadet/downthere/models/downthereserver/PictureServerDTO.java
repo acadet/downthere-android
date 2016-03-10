@@ -11,7 +11,7 @@ class PictureServerDTO {
 
     public int        id;
     public String     name;
-    public String     createdAt;
-    public String     updatedAt;
+    public String     created_at;
+    public String     updated_at;
     public Attachment attachment;
 }
