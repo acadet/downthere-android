@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.ui.fragments;
+package com.adriencadet.downthere.ui.fragments.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.adriencadet.downthere.R;
+import com.adriencadet.downthere.ui.fragments.BaseFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

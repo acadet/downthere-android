@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.ui.fragments.FooterFragment;
-import com.adriencadet.downthere.ui.fragments.PictureGridFragment;
+import com.adriencadet.downthere.ui.fragments.main.FooterFragment;
+import com.adriencadet.downthere.ui.fragments.main.PictureGridFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;

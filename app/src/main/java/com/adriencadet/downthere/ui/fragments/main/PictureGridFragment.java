@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.ui.fragments;
+package com.adriencadet.downthere.ui.fragments.main;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,7 @@ import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.ui.UIMediator;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
+import com.adriencadet.downthere.ui.fragments.BaseFragment;
 
 import java.util.List;
 

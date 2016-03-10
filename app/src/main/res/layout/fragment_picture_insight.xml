@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    style="@style/MatchParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <ScrollView
+        style="@style/ScrollViewPictureInsight"
+        >
+
+        <LinearLayout
+            style="@style/MatchParentWrapContent.Vertical"
+            >
+
+            <ImageView
+                android:id="@+id/picture_insight_embedded_picture"
+                style="@style/MatchParentWrapContent"
+                />
+
+            <TextView
+                android:id="@+id/picture_insight_fragment_name"
+                style="@style/NamePictureInsight"
+                />
+
+            <TextView
+                android:id="@+id/picture_insight_fragment_latest_update"
+                style="@style/LatestUpdatePictureInsight"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
