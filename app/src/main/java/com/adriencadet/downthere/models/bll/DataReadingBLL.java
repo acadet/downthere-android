@@ -1,5 +1,6 @@
 package com.adriencadet.downthere.models.bll;
 
+import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.dao.IPictureDAO;
 import com.adriencadet.downthere.models.downthereserver.DownthereServerErrors;
@@ -40,7 +41,9 @@ class DataReadingBLL implements IDataReadingBLL {
                     public void call(Subscriber<? super List<PictureBLLDTO>> subscriber) {
                         if (listPicturesByDateDescObservableForceRefresh
                             || latestListPicturesByDateDesc == null
-                            || latestListPicturesByDateDesc.plusMinutes(1).isBefore(DateTime.now())) {
+                            || latestListPicturesByDateDesc
+                                .plusMinutes(ApplicationConfiguration.PICTURE_GRID_CACHING_MINUTES)
+                                .isBefore(DateTime.now())) {
                             server
                                 .listPicturesByDateDesc()
                                 .subscribeOn(Schedulers.newThread())
