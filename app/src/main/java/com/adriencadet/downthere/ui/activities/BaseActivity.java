@@ -57,17 +57,21 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        UIMediator.getFragmentActivityBus().register(this);
-        UIMediator.getPopupBus().register(this);
-        UIMediator.getSpinnerBus().register(this);
-
         spinner = new Spinner(this);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
+
+        UIMediator.getFragmentActivityBus().register(this);
+        UIMediator.getPopupBus().register(this);
+        UIMediator.getSpinnerBus().register(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
 
         UIMediator.getFragmentActivityBus().unregister(this);
         UIMediator.getPopupBus().unregister(this);
@@ -80,6 +84,11 @@ public abstract class BaseActivity extends Activity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
