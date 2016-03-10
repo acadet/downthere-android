@@ -44,14 +44,19 @@ public class PictureInsightFragment extends BaseFragment {
 
         view = inflater.inflate(R.layout.fragment_picture_insight, container, false);
         ButterKnife.bind(this, view);
-        UIMediator.getFragmentActivityBus().register(this);
 
         return view;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onResume() {
+        super.onResume();
+        UIMediator.getFragmentActivityBus().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         UIMediator.getFragmentActivityBus().unregister(this);
     }
 
