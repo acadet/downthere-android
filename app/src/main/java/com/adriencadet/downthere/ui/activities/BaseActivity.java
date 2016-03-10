@@ -58,7 +58,7 @@ public abstract class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        UIMediator.getSegueBus().register(this);
+        UIMediator.getFragmentActivityBus().register(this);
         UIMediator.getPopupBus().register(this);
         UIMediator.getSpinnerBus().register(this);
 
@@ -68,8 +68,8 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        
-        UIMediator.getSegueBus().unregister(this);
+
+        UIMediator.getFragmentActivityBus().unregister(this);
         UIMediator.getPopupBus().unregister(this);
         UIMediator.getSpinnerBus().unregister(this);
 

@@ -14,7 +14,7 @@ import org.greenrobot.eventbus.EventBus;
 public class UIMediator {
     private static Context context;
 
-    private static final EventBus segueBus =
+    private static final EventBus fragmentActivityBus =
         EventBus
             .builder()
             .logNoSubscriberMessages(false)
@@ -39,8 +39,8 @@ public class UIMediator {
         UIMediator.context = context;
     }
 
-    public static EventBus getSegueBus() {
-        return segueBus;
+    public static EventBus getFragmentActivityBus() {
+        return fragmentActivityBus;
     }
 
     public static EventBus getPopupBus() {

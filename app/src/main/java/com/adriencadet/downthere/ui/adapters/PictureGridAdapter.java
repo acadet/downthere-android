@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
+import com.adriencadet.downthere.ui.UIMediator;
+import com.adriencadet.downthere.ui.events.ShowPictureInsightSegue;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,6 +49,10 @@ public class PictureGridAdapter extends BaseAdapter<PictureBLLDTO> {
             .resize(width, width)
             .centerCrop()
             .into(embeddedPicture);
+
+        embeddedPicture.setOnClickListener((v) -> {
+            UIMediator.getFragmentActivityBus().postSticky(new ShowPictureInsightSegue(itemAt(position)));
+        });
 
         return view;
     }

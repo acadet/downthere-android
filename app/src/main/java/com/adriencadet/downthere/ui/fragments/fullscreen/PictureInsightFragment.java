@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.ui.UIMediator;
-import com.adriencadet.downthere.ui.events.ShowPictureInsight;
+import com.adriencadet.downthere.ui.events.ShowPictureInsightSegue;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 import com.squareup.picasso.Picasso;
 
@@ -44,7 +44,7 @@ public class PictureInsightFragment extends BaseFragment {
 
         view = inflater.inflate(R.layout.fragment_picture_insight, container, false);
         ButterKnife.bind(this, view);
-        UIMediator.getSegueBus().register(this);
+        UIMediator.getFragmentActivityBus().register(this);
 
         return view;
     }
@@ -52,11 +52,11 @@ public class PictureInsightFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        UIMediator.getSegueBus().unregister(this);
+        UIMediator.getFragmentActivityBus().unregister(this);
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onInit(ShowPictureInsight e) {
+    public void onInit(ShowPictureInsightSegue e) {
         Picasso
             .with(getActivity())
             .load(e.picture.getAttachmentURL())

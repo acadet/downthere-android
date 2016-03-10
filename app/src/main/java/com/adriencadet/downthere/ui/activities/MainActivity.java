@@ -1,10 +1,12 @@
 package com.adriencadet.downthere.ui.activities;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.adriencadet.downthere.R;
+import com.adriencadet.downthere.ui.events.ShowPictureInsightSegue;
 import com.adriencadet.downthere.ui.fragments.main.FooterFragment;
 import com.adriencadet.downthere.ui.fragments.main.PictureGridFragment;
 
@@ -45,5 +47,11 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void show(Segues.Show.PictureGrid e) {
         showPictureGrid(false);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void showPictureInsight(ShowPictureInsightSegue e) {
+        Intent intent = new Intent(this, FullScreenActivity.class);
+        startActivity(intent);
     }
 }
