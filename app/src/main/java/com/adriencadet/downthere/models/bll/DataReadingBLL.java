@@ -5,9 +5,6 @@ import com.adriencadet.downthere.models.bll.jobs.ListPicturesByDateDescJob;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-import dagger.Lazy;
 import rx.Observable;
 
 /**
@@ -15,16 +12,19 @@ import rx.Observable;
  * <p>
  */
 class DataReadingBLL implements IDataReadingBLL {
-    @Inject
-    Lazy<ListPicturesByDateDescJob> listPicturesByDateDesc;
+    ListPicturesByDateDescJob listPicturesByDateDesc;
+
+    DataReadingBLL(ListPicturesByDateDescJob listPicturesByDateDesc) {
+        this.listPicturesByDateDesc = listPicturesByDateDesc;
+    }
 
     @Override
     public Observable<List<PictureBLLDTO>> listPicturesByDateDesc() {
-        return listPicturesByDateDesc.get().get(false);
+        return listPicturesByDateDesc.get(false);
     }
 
     @Override
     public Observable<List<PictureBLLDTO>> refreshPicturesByDateDesc() {
-        return listPicturesByDateDesc.get().get(true);
+        return listPicturesByDateDesc.get(false);
     }
 }

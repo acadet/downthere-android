@@ -1,12 +1,10 @@
 package com.adriencadet.downthere.models.downthereserver;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
+import com.adriencadet.downthere.models.downthereserver.jobs.ListPicturesByDateDescJob;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-import dagger.Lazy;
 import rx.Observable;
 
 /**
@@ -14,11 +12,14 @@ import rx.Observable;
  * <p>
  */
 class DownthereServer implements IDownthereServer {
-    @Inject
-    Lazy<Observable<List<PictureBLLDTO>>> listPicturesByDateDescObservable;
+    ListPicturesByDateDescJob listPicturesByDateDescJob;
+
+    DownthereServer(ListPicturesByDateDescJob listPicturesByDateDescJob) {
+        this.listPicturesByDateDescJob = listPicturesByDateDescJob;
+    }
 
     @Override
     public Observable<List<PictureBLLDTO>> listPicturesByDateDesc() {
-        return listPicturesByDateDescObservable.get();
+        return listPicturesByDateDescJob.get();
     }
 }
