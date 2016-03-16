@@ -2,16 +2,26 @@ package com.adriencadet.downthere;
 
 import android.app.Application;
 
-import com.adriencadet.downthere.ui.UIMediator;
-
 /**
  * DownthereApplication
  * <p>
  */
 public class DownthereApplication extends Application {
+    private static DownthereApplication instance;
+    private        ApplicationComponent applicationComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        UIMediator.setContext(this);
+
+        instance = this;
+
+        applicationComponent = DaggerApplicationComponent.builder()
+                                                         .applicationModule(new ApplicationModule(this))
+                                                         .build();
+    }
+
+    public static ApplicationComponent getApplicationComponent() {
+        return instance.applicationComponent;
     }
 }

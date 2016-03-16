@@ -21,7 +21,7 @@ class PictureDAO extends BaseDAO implements IPictureDAO {
 
     @Override
     public List<PictureDAODTO> listByDateDesc() {
-        return getDAL().allObjectsSorted(PictureDAODTO.class, "updatedAt", Sort.DESCENDING);
+        return getDAL().allObjectsSorted(PictureDAODTO.class, "updatedAwt", Sort.DESCENDING);
     }
 
     @Override

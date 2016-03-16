@@ -1,16 +1,38 @@
 package com.adriencadet.downthere.ui.fragments;
 
 import android.app.Fragment;
+import android.os.Bundle;
 
-import com.adriencadet.downthere.ui.UIMediator;
+import com.adriencadet.downthere.DownthereApplication;
+import com.adriencadet.downthere.models.bll.IDataReadingBLL;
 import com.adriencadet.downthere.ui.events.PopupEvents;
 import com.adriencadet.downthere.ui.events.SpinnerEvents;
+
+import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * BaseFragment
  * <p>
  */
 public abstract class BaseFragment extends Fragment {
+    @Inject
+    @Named("fragmentActivity")
+    public EventBus fragmentActivityBus;
+
+    @Inject
+    @Named("popup")
+    public EventBus popupBus;
+
+    @Inject
+    @Named("spinner")
+    public EventBus spinnerBus;
+
+    @Inject
+    public IDataReadingBLL dataReadingBLL;
+
     public abstract class Subscriber<T> extends rx.Subscriber<T> {
         @Override
         public void onCompleted() {
@@ -22,24 +44,30 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        DownthereApplication.getApplicationComponent().inject(this);
+    }
+
     public void inform(String message) {
-        UIMediator.getPopupBus().post(new PopupEvents.Info(message));
+        popupBus.post(new PopupEvents.Info(message));
     }
 
     public void confirm(String message) {
-        UIMediator.getPopupBus().post(new PopupEvents.Confirm(message));
+        popupBus.post(new PopupEvents.Confirm(message));
 
     }
 
     public void alert(String message) {
-        UIMediator.getPopupBus().post(new PopupEvents.Alert(message));
+        popupBus.post(new PopupEvents.Alert(message));
     }
 
     public void showSpinner() {
-        UIMediator.getSpinnerBus().post(new SpinnerEvents.Show());
+        spinnerBus.post(new SpinnerEvents.Show());
     }
 
     public void hideSpinner() {
-        UIMediator.getSpinnerBus().post(new SpinnerEvents.Hide());
+        spinnerBus.post(new SpinnerEvents.Hide());
     }
 }

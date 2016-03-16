@@ -1,22 +1,19 @@
 package com.adriencadet.downthere.models.downthereserver;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+
 /**
  * DownthereServerFactory
  * <p>
  */
+@Module
 public class DownthereServerFactory {
-    private static IDownthereServer server;
-    private static final Object serverLock = new Object();
-
-    public static IDownthereServer build() {
-        if (server == null) {
-            synchronized (serverLock) {
-                if (server == null) {
-                    server = new DownthereServer();
-                }
-            }
-        }
-
-        return server;
+    @Provides
+    @Singleton
+    public IDownthereServer provideServer() {
+        return new DownthereServer();
     }
 }

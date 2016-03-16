@@ -2,23 +2,20 @@ package com.adriencadet.downthere.models.dao;
 
 import android.content.Context;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+
 /**
  * DAOFactory
  * <p>
  */
+@Module
 public class DAOFactory {
-    private static IPictureDAO pictureDAO;
-    private static final Object pictureDAOLock = new Object();
-
-    public static IPictureDAO buildPicture(Context context) {
-        if (pictureDAO == null) {
-            synchronized (pictureDAOLock) {
-                if (pictureDAO == null) {
-                    pictureDAO = new PictureDAO(context);
-                }
-            }
-        }
-
-        return pictureDAO;
+    @Provides
+    @Singleton
+    public IPictureDAO providePictureDAO(Context context) {
+        return new PictureDAO(context);
     }
 }

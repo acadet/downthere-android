@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.ui.UIMediator;
 import com.adriencadet.downthere.ui.events.ShowPictureInsightSegue;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 import com.squareup.picasso.Picasso;
@@ -51,13 +50,13 @@ public class PictureInsightFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        UIMediator.getFragmentActivityBus().register(this);
+        fragmentActivityBus.register(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        UIMediator.getFragmentActivityBus().unregister(this);
+        fragmentActivityBus.unregister(this);
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

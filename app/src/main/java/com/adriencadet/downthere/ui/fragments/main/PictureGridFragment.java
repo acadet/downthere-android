@@ -11,7 +11,6 @@ import android.widget.GridView;
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
-import com.adriencadet.downthere.ui.UIMediator;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 
@@ -49,8 +48,7 @@ public class PictureGridFragment extends BaseFragment {
 
         showSpinner();
 
-        listPicturesByDateDescSubscription = UIMediator
-            .getDataReadingBLL()
+        dataReadingBLL
             .refreshPicturesByDateDesc()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Subscriber<List<PictureBLLDTO>>() {
@@ -110,8 +108,7 @@ public class PictureGridFragment extends BaseFragment {
 
         showSpinner();
         listPicturesByDateDescSubscription =
-            UIMediator
-                .getDataReadingBLL()
+            dataReadingBLL
                 .listPicturesByDateDesc()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<PictureBLLDTO>>() {

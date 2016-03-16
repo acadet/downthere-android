@@ -5,15 +5,19 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-import com.adriencadet.downthere.ui.UIMediator;
+import com.adriencadet.downthere.DownthereApplication;
 import com.adriencadet.downthere.ui.components.Spinner;
 import com.adriencadet.downthere.ui.events.PopupEvents;
 import com.adriencadet.downthere.ui.events.SpinnerEvents;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Map;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.ButterKnife;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -25,6 +29,18 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  */
 public abstract class BaseActivity extends Activity {
     private Spinner spinner;
+
+    @Inject
+    @Named("fragmentActivity")
+    EventBus fragmentActivityBus;
+
+    @Inject
+    @Named("popup")
+    EventBus popupBus;
+
+    @Inject
+    @Named("spinner")
+    EventBus spinnerBus;
 
     protected void setFragment(int resourceId, Fragment fragment) {
         getFragmentManager()
@@ -57,6 +73,9 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DownthereApplication.getApplicationComponent().inject(this);
+
         spinner = new Spinner(this);
     }
 
@@ -64,18 +83,18 @@ public abstract class BaseActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        UIMediator.getFragmentActivityBus().register(this);
-        UIMediator.getPopupBus().register(this);
-        UIMediator.getSpinnerBus().register(this);
+        fragmentActivityBus.register(this);
+        popupBus.register(this);
+        spinnerBus.register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        UIMediator.getFragmentActivityBus().unregister(this);
-        UIMediator.getPopupBus().unregister(this);
-        UIMediator.getSpinnerBus().unregister(this);
+        fragmentActivityBus.unregister(this);
+        popupBus.unregister(this);
+        spinnerBus.unregister(this);
 
         Crouton.cancelAllCroutons();
     }
