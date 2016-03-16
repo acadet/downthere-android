@@ -135,6 +135,8 @@ public class PictureGridFragment extends BaseFragment {
                         super.onError(e);
                         if (e instanceof BLLErrors.NoConnection) {
                             inform(getString(R.string.no_connection_error));
+                        } else if (e instanceof BLLErrors.InternalServerError) {
+                            inform(getString(R.string.internal_server_error));
                         } else {
                             alert(e.getMessage());
                         }

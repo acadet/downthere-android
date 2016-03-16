@@ -51,6 +51,9 @@ public class ListPicturesByDateDescJob {
                                     if (e instanceof DownthereServerErrors.NoConnection) {
                                         subscriber.onNext(pictureBLLDTOSerializer.fromDAO(pictureDAO.listByDateDesc()));
                                         subscriber.onError(new BLLErrors.NoConnection());
+                                    } else if (e instanceof DownthereServerErrors.ServerError) {
+                                        subscriber.onNext(pictureBLLDTOSerializer.fromDAO(pictureDAO.listByDateDesc()));
+                                        subscriber.onError(new BLLErrors.InternalServerError());
                                     } else {
                                         subscriber.onError(e);
                                     }
