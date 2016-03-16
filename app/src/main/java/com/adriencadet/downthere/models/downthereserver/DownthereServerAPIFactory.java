@@ -15,9 +15,9 @@ import retrofit.converter.GsonConverter;
 @Module
 public class DownthereServerAPIFactory {
     @Provides
-    public IDownthereServerAPI provideAPI() {
+    public IDownthereServerAPI provideAPI(ApplicationConfiguration configuration) {
         return new RestAdapter.Builder()
-            .setEndpoint(ApplicationConfiguration.SERVER_ENDPOINT)
+            .setEndpoint(configuration.SERVER_ENDPOINT)
             .setConverter(new GsonConverter(new GsonBuilder().create()))
             .build()
             .create(IDownthereServerAPI.class);

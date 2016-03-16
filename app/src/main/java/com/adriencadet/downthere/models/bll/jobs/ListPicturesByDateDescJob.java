@@ -26,7 +26,7 @@ public class ListPicturesByDateDescJob {
 
     private Observable<List<PictureBLLDTO>> observable;
 
-    public ListPicturesByDateDescJob(IDownthereServer server, IPictureDAO pictureDAO, IPictureBLLDTOSerializer pictureBLLDTOSerializer) {
+    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServer server, IPictureDAO pictureDAO, IPictureBLLDTOSerializer pictureBLLDTOSerializer) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<PictureBLLDTO>>() {
                 @Override
@@ -34,7 +34,7 @@ public class ListPicturesByDateDescJob {
                     if (listPicturesByDateDescObservableForceRefresh
                         || latestListPicturesByDateDesc == null
                         || latestListPicturesByDateDesc
-                            .plusMinutes(ApplicationConfiguration.PICTURE_GRID_CACHING_MINUTES)
+                            .plusMinutes(configuration.PICTURE_GRID_CACHING_MINUTES)
                             .isBefore(DateTime.now())) {
                         server
                             .listPicturesByDateDesc()

@@ -23,7 +23,7 @@ import rx.schedulers.Schedulers;
 public class ListPicturesByDateDescJob {
     private Observable<List<PictureBLLDTO>> observable;
 
-    public ListPicturesByDateDescJob(IDownthereServerAPI api) {
+    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerAPI api) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<PictureBLLDTO>>() {
                 @Override
@@ -37,7 +37,7 @@ public class ListPicturesByDateDescJob {
                                 return new PictureBLLDTO()
                                     .setId(a.id)
                                     .setName(a.name)
-                                    .setAttachmentURL(ApplicationConfiguration.SERVER_ENDPOINT + a.attachment.url)
+                                    .setAttachmentURL(configuration.SERVER_ENDPOINT + a.attachment.url)
                                     .setCreatedAt(new DateTime(a.created_at))
                                     .setUpdatedAt(new DateTime(a.updated_at));
                             })
