@@ -4,7 +4,7 @@ package com.adriencadet.downthere.models.downthereserver;
  * PictureServerDTO
  * <p>
  */
-class PictureServerDTO {
+public class PictureServerDTO {
     public static class Attachment {
         public String url;
     }

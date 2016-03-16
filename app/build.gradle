@@ -61,6 +61,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.1'
     compile 'com.google.dagger:dagger:2.1'
     apt 'com.google.dagger:dagger-compiler:2.1'
+    compile 'com.jakewharton.timber:timber:4.1.1'
 }
 
 // Lambda functions

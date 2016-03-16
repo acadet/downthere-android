@@ -2,7 +2,9 @@ package com.adriencadet.downthere;
 
 import com.adriencadet.downthere.models.bll.BLLFactory;
 import com.adriencadet.downthere.models.dao.DAOFactory;
+import com.adriencadet.downthere.models.downthereserver.DownthereServerAPIFactory;
 import com.adriencadet.downthere.models.downthereserver.DownthereServerFactory;
+import com.adriencadet.downthere.models.downthereserver.jobs.DownthereServerJobFactory;
 import com.adriencadet.downthere.ui.EventBusFactory;
 import com.adriencadet.downthere.ui.activities.BaseActivity;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
@@ -22,7 +24,9 @@ import dagger.Component;
     BLLFactory.class,
     DAOFactory.class,
     DownthereServerFactory.class,
-    EventBusFactory.class
+    EventBusFactory.class,
+    DownthereServerAPIFactory.class,
+    DownthereServerJobFactory.class
 })
 public interface ApplicationComponent {
     void inject(DownthereApplication application);
