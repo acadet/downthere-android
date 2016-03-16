@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.models.bll;
+package com.adriencadet.downthere.models.bll.serializers;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.dao.dto.PictureDAODTO;
@@ -13,8 +13,9 @@ import java.util.List;
  * PictureBLLDTOSerializer
  * <p>
  */
-class PictureBLLDTOSerializer {
-    static PictureBLLDTO fromDAO(PictureDAODTO dto) {
+class PictureBLLDTOSerializer implements IPictureBLLDTOSerializer {
+    @Override
+    public PictureBLLDTO fromDAO(PictureDAODTO dto) {
         return new PictureBLLDTO()
             .setId(dto.getId())
             .setName(dto.getName())
@@ -23,7 +24,8 @@ class PictureBLLDTOSerializer {
             .setAttachmentURL(dto.getAttachmentURL());
     }
 
-    static PictureDAODTO toDAO(PictureBLLDTO dto) {
+    @Override
+    public PictureDAODTO toDAO(PictureBLLDTO dto) {
         PictureDAODTO outcome = new PictureDAODTO();
 
         outcome.setId(dto.getId());
@@ -35,17 +37,19 @@ class PictureBLLDTOSerializer {
         return outcome;
     }
 
-    static List<PictureBLLDTO> fromDAO(List<PictureDAODTO> dtos) {
+    @Override
+    public List<PictureBLLDTO> fromDAO(List<PictureDAODTO> dtos) {
         return Stream
             .of(dtos)
-            .map(PictureBLLDTOSerializer::fromDAO)
+            .map(this::fromDAO)
             .collect(Collectors.toList());
     }
 
-    static List<PictureDAODTO> toDAO(List<PictureBLLDTO> dtos) {
+    @Override
+    public List<PictureDAODTO> toDAO(List<PictureBLLDTO> dtos) {
         return Stream
             .of(dtos)
-            .map(PictureBLLDTOSerializer::toDAO)
+            .map(this::toDAO)
             .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.adriencadet.downthere;
 
 import com.adriencadet.downthere.models.bll.BLLFactory;
+import com.adriencadet.downthere.models.bll.serializers.BLLSerializerFactory;
 import com.adriencadet.downthere.models.dao.DAOFactory;
 import com.adriencadet.downthere.models.downthereserver.DownthereServerAPIFactory;
 import com.adriencadet.downthere.models.downthereserver.DownthereServerFactory;
@@ -26,7 +27,8 @@ import dagger.Component;
     DownthereServerFactory.class,
     EventBusFactory.class,
     DownthereServerAPIFactory.class,
-    DownthereServerJobFactory.class
+    DownthereServerJobFactory.class,
+    BLLSerializerFactory.class
 })
 public interface ApplicationComponent {
     void inject(DownthereApplication application);
