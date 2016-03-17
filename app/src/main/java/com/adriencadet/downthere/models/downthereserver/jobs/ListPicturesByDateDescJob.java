@@ -15,6 +15,7 @@ import retrofit.RetrofitError;
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * ListPicturesByDateDescJob
@@ -51,6 +52,8 @@ public class ListPicturesByDateDescJob {
                         } else {
                             subscriber.onError(new DownthereServerErrors.ServerError());
                         }
+
+                        Timber.e(e, "Failed to ListPicturesByDateDescJob");
                     }
                 }
             })
