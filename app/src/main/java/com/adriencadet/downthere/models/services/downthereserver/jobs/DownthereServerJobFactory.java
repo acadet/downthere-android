@@ -1,7 +1,7 @@
-package com.adriencadet.downthere.models.downthereserver.jobs;
+package com.adriencadet.downthere.models.services.downthereserver.jobs;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
-import com.adriencadet.downthere.models.downthereserver.IDownthereServerAPI;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerAPI;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.models.downthereserver;
+package com.adriencadet.downthere.models.services.downthereserver;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 

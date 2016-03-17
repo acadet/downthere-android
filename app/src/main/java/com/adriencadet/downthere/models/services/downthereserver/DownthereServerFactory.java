@@ -1,6 +1,6 @@
-package com.adriencadet.downthere.models.downthereserver;
+package com.adriencadet.downthere.models.services.downthereserver;
 
-import com.adriencadet.downthere.models.downthereserver.jobs.ListPicturesByDateDescJob;
+import com.adriencadet.downthere.models.services.downthereserver.jobs.ListPicturesByDateDescJob;
 
 import javax.inject.Singleton;
 

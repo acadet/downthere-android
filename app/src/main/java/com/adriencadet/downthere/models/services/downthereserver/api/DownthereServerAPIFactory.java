@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.models.downthereserver;
+package com.adriencadet.downthere.models.services.downthereserver.api;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.google.gson.GsonBuilder;

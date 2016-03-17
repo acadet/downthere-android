@@ -5,8 +5,8 @@ import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.bll.serializers.IPictureBLLDTOSerializer;
 import com.adriencadet.downthere.models.dao.IPictureDAO;
-import com.adriencadet.downthere.models.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.downthereserver.IDownthereServer;
+import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
+import com.adriencadet.downthere.models.services.downthereserver.IDownthereServer;
 
 import org.joda.time.DateTime;
 

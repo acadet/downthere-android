@@ -1,4 +1,6 @@
-package com.adriencadet.downthere.models.downthereserver;
+package com.adriencadet.downthere.models.services.downthereserver.api;
+
+import com.adriencadet.downthere.models.services.downthereserver.dto.PictureServerDTO;
 
 import java.util.List;
 

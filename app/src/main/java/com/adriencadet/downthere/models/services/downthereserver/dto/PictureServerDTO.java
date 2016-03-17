@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.models.downthereserver;
+package com.adriencadet.downthere.models.services.downthereserver.dto;
 
 /**
  * PictureServerDTO

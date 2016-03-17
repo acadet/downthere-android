@@ -1,9 +1,9 @@
-package com.adriencadet.downthere.models.downthereserver.jobs;
+package com.adriencadet.downthere.models.services.downthereserver.jobs;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
-import com.adriencadet.downthere.models.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.downthereserver.IDownthereServerAPI;
+import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerAPI;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
