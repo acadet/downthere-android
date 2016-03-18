@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.models.dao;
+package com.adriencadet.downthere.models.dao.realm;
 
 import android.content.Context;
 

@@ -1,6 +1,6 @@
-package com.adriencadet.downthere.models.dao;
+package com.adriencadet.downthere.models.dao.realm;
 
-import com.adriencadet.downthere.models.dao.dto.PictureDAODTO;
+import com.adriencadet.downthere.models.dao.realm.dto.PictureDAODTO;
 
 import java.util.List;
 

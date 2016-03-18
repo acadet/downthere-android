@@ -1,8 +1,8 @@
-package com.adriencadet.downthere.models.dao;
+package com.adriencadet.downthere.models.dao.realm;
 
 import android.content.Context;
 
-import com.adriencadet.downthere.models.dao.dto.TextFileDAODTO;
+import com.adriencadet.downthere.models.dao.realm.dto.TextFileDAODTO;
 
 import java.util.List;
 

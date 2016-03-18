@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.models.dao.dto;
+package com.adriencadet.downthere.models.dao.realm.dto;
 
 import java.util.Date;
 

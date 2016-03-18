@@ -3,7 +3,7 @@ package com.adriencadet.downthere;
 import com.adriencadet.downthere.models.bll.BLLFactory;
 import com.adriencadet.downthere.models.bll.jobs.BLLJobsFactory;
 import com.adriencadet.downthere.models.bll.serializers.BLLSerializerFactory;
-import com.adriencadet.downthere.models.dao.DAOFactory;
+import com.adriencadet.downthere.models.dao.realm.DAOFactory;
 import com.adriencadet.downthere.models.services.downthereserver.api.DownthereServerAPIFactory;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerFactory;
 import com.adriencadet.downthere.models.services.downthereserver.jobs.DownthereServerJobFactory;

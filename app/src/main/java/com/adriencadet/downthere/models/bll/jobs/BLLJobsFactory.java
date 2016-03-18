@@ -2,7 +2,7 @@ package com.adriencadet.downthere.models.bll.jobs;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.serializers.IPictureBLLDTOSerializer;
-import com.adriencadet.downthere.models.dao.IPictureDAO;
+import com.adriencadet.downthere.models.dao.realm.IPictureDAO;
 import com.adriencadet.downthere.models.services.downthereserver.IDownthereServer;
 
 import javax.inject.Singleton;
