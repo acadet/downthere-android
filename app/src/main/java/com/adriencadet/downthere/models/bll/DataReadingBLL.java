@@ -1,7 +1,9 @@
 package com.adriencadet.downthere.models.bll;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
+import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
 import com.adriencadet.downthere.models.bll.jobs.ListPicturesByDateDescJob;
+import com.adriencadet.downthere.models.bll.jobs.ListTextFilesByDateDescJob;
 
 import java.util.List;
 
@@ -12,10 +14,15 @@ import rx.Observable;
  * <p>
  */
 class DataReadingBLL implements IDataReadingBLL {
-    ListPicturesByDateDescJob listPicturesByDateDesc;
+    private ListPicturesByDateDescJob  listPicturesByDateDesc;
+    private ListTextFilesByDateDescJob listTextFilesByDateDescJob;
 
-    DataReadingBLL(ListPicturesByDateDescJob listPicturesByDateDesc) {
+    DataReadingBLL(
+        ListPicturesByDateDescJob listPicturesByDateDesc,
+        ListTextFilesByDateDescJob listTextFilesByDateDescJob
+    ) {
         this.listPicturesByDateDesc = listPicturesByDateDesc;
+        this.listTextFilesByDateDescJob = listTextFilesByDateDescJob;
     }
 
     @Override
@@ -25,6 +32,21 @@ class DataReadingBLL implements IDataReadingBLL {
 
     @Override
     public Observable<List<PictureBLLDTO>> refreshPicturesByDateDesc() {
-        return listPicturesByDateDesc.get(false);
+        return listPicturesByDateDesc.get(true);
+    }
+
+    @Override
+    public Observable<List<TextFileBLLDTO>> listTextFilesByDateDesc() {
+        return listTextFilesByDateDescJob.get(false);
+    }
+
+    @Override
+    public Observable<List<TextFileBLLDTO>> refreshTextFilesByDateDesc() {
+        return listTextFilesByDateDescJob.get(true);
+    }
+
+    @Override
+    public Observable<String> getTextFileContent(TextFileBLLDTO dto) {
+        return null;
     }
 }
