@@ -19,4 +19,10 @@ public class DownthereServerJobFactory {
     public ListPicturesByDateDescJob provideListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerAPI api) {
         return new ListPicturesByDateDescJob(configuration, api);
     }
+
+    @Provides
+    @Singleton
+    public ListTextFilesByDateDescJob provideListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerAPI api) {
+        return new ListTextFilesByDateDescJob(configuration, api);
+    }
 }
