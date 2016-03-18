@@ -16,4 +16,10 @@ public class BLLSerializerFactory {
     public IPictureBLLDTOSerializer providePictureBLLDTOSerializer() {
         return new PictureBLLDTOSerializer();
     }
+
+    @Provides
+    @Singleton
+    public ITextFileBLLDTOSerializer provideTextFileBLLDTOSerializer() {
+        return new TextFileBLLDTOSerializer();
+    }
 }
