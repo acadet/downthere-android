@@ -15,4 +15,6 @@ public interface IDownthereServer {
     Observable<List<PictureBLLDTO>> listPicturesByDateDesc();
 
     Observable<List<TextFileBLLDTO>> listTextFilesByDateDesc();
+
+    Observable<String> getTextFileContent(String url);
 }

@@ -25,4 +25,10 @@ public class DownthereServerJobFactory {
     public ListTextFilesByDateDescJob provideListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerAPI api) {
         return new ListTextFilesByDateDescJob(configuration, api);
     }
+
+    @Provides
+    @Singleton
+    public GetTextFileContentJob provideGetTextFileContentJob(IDownthereServerAPI api) {
+        return new GetTextFileContentJob(api);
+    }
 }
