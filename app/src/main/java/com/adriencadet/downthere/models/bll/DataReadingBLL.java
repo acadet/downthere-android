@@ -2,6 +2,7 @@ package com.adriencadet.downthere.models.bll;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
+import com.adriencadet.downthere.models.bll.jobs.GetTextFileContentJob;
 import com.adriencadet.downthere.models.bll.jobs.ListPicturesByDateDescJob;
 import com.adriencadet.downthere.models.bll.jobs.ListTextFilesByDateDescJob;
 
@@ -16,13 +17,16 @@ import rx.Observable;
 class DataReadingBLL implements IDataReadingBLL {
     private ListPicturesByDateDescJob  listPicturesByDateDesc;
     private ListTextFilesByDateDescJob listTextFilesByDateDescJob;
+    private GetTextFileContentJob      getTextFileContentJob;
 
     DataReadingBLL(
         ListPicturesByDateDescJob listPicturesByDateDesc,
-        ListTextFilesByDateDescJob listTextFilesByDateDescJob
+        ListTextFilesByDateDescJob listTextFilesByDateDescJob,
+        GetTextFileContentJob getTextFileContentJob
     ) {
         this.listPicturesByDateDesc = listPicturesByDateDesc;
         this.listTextFilesByDateDescJob = listTextFilesByDateDescJob;
+        this.getTextFileContentJob = getTextFileContentJob;
     }
 
     @Override
@@ -47,6 +51,6 @@ class DataReadingBLL implements IDataReadingBLL {
 
     @Override
     public Observable<String> getTextFileContent(TextFileBLLDTO dto) {
-        return null;
+        return getTextFileContentJob.get(dto.getAttachmentURL());
     }
 }

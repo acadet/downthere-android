@@ -37,4 +37,11 @@ public class BLLJobsFactory {
         ITextFileBLLDTOSerializer serializer) {
         return new ListTextFilesByDateDescJob(configuration, server, textFileDAO, serializer);
     }
+
+    @Provides
+    @Singleton
+    public GetTextFileContentJob provideGetTextFileContentJob(
+        IDownthereServer server) {
+        return new GetTextFileContentJob(server);
+    }
 }
