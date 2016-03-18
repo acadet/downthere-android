@@ -1,7 +1,7 @@
 package com.adriencadet.downthere.models.bll.serializers;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
-import com.adriencadet.downthere.models.dao.realm.dto.PictureDAODTO;
+import com.adriencadet.downthere.models.dao.dto.PictureDAODTO;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
