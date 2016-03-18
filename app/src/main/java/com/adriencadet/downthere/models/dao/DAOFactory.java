@@ -18,4 +18,10 @@ public class DAOFactory {
     public IPictureDAO providePictureDAO(Context context) {
         return new PictureDAO(context);
     }
+
+    @Provides
+    @Singleton
+    public ITextFileDAO provideTextFileDAO(Context context) {
+        return new TextFileDAO(context);
+    }
 }
