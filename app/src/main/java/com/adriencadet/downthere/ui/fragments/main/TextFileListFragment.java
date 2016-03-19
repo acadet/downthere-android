@@ -89,11 +89,20 @@ public class TextFileListFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view;
 
-        view = inflater.inflate(R.layout.fragment_picture_grid, container, false);
+        view = inflater.inflate(R.layout.fragment_text_file_list, container, false);
         ButterKnife.bind(this, view);
 
         listAdapter = new TextFileListAdapter(getActivity());
         listView.setAdapter(listAdapter);
+
+        listViewWrapper.setOnRefreshListener(() -> refresh(false));
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         showSpinner();
         listTextFilesByDateDescSubscription =
@@ -130,10 +139,6 @@ public class TextFileListFragment extends BaseFragment {
                         }
                     }
                 });
-
-        listViewWrapper.setOnRefreshListener(() -> refresh(false));
-
-        return view;
     }
 
     @Override

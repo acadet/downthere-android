@@ -96,6 +96,15 @@ public class PictureGridFragment extends BaseFragment {
         gridAdapter = new PictureGridAdapter(getActivity());
         gridView.setAdapter(gridAdapter);
 
+        gridViewWrapper.setOnRefreshListener(() -> refresh(false));
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         showSpinner();
         listPicturesByDateDescSubscription =
             dataReadingBLL
@@ -131,10 +140,6 @@ public class PictureGridFragment extends BaseFragment {
                         hideSpinner();
                     }
                 });
-
-        gridViewWrapper.setOnRefreshListener(() -> refresh(false));
-
-        return view;
     }
 
     @Override
