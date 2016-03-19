@@ -17,6 +17,10 @@ public class Segues {
         public static class PictureGrid {
         }
 
+        public static class TextFileList {
+
+        }
+
         public static class PictureInsight {
             public PictureBLLDTO picture;
 

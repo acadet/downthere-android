@@ -37,6 +37,6 @@ public class FooterFragment extends BaseFragment {
 
     @OnClick(R.id.footer_fragment_text_file_icon)
     public void onTextFileIconClick() {
-
+        fragmentActivityBus.post(new Segues.Show.TextFileList());
     }
 }
