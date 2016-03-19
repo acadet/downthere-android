@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/MatchParentWrapContent">
+
+    <TextView
+        android:id="@+id/adapter_text_file_list_label"
+        style="@style/LabelTextFileListAdapter"
+        />
+
+</RelativeLayout>

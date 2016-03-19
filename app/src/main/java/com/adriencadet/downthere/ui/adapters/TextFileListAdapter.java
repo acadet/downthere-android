@@ -3,9 +3,12 @@ package com.adriencadet.downthere.ui.adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.adriencadet.downthere.DownthereApplication;
+import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
+import com.adriencadet.downthere.ui.events.Segues;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -30,6 +33,17 @@ public class TextFileListAdapter extends BaseAdapter<TextFileBLLDTO> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        View view;
+        TextView label;
+        TextFileBLLDTO file = itemAt(position);
+
+        view = recycle(R.layout.adapter_text_file_list, convertView, parent);
+
+        label = (TextView) view.findViewById(R.id.adapter_text_file_list_label);
+
+        label.setText(file.getName());
+        label.setOnClickListener((v) -> fragmentActivityBus.post(new Segues.Show.TextFileInsight(file)));
+
+        return view;
     }
 }

@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,12 +29,8 @@ public class PictureGridAdapter extends BaseAdapter<PictureBLLDTO> {
     EventBus fragmentActivityBus;
 
     public PictureGridAdapter(Context context) {
-        this(context, new ArrayList<>());
+        super(context, new ArrayList<>());
         DownthereApplication.getApplicationComponent().inject(this);
-    }
-
-    public PictureGridAdapter(Context context, List<PictureBLLDTO> items) {
-        super(context, items);
     }
 
     @Override
