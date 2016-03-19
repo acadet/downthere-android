@@ -8,6 +8,7 @@ import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.ui.events.Segues;
 import com.adriencadet.downthere.ui.fragments.main.FooterFragment;
 import com.adriencadet.downthere.ui.fragments.main.PictureGridFragment;
+import com.adriencadet.downthere.ui.fragments.main.TextFileListFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -36,6 +37,7 @@ public class MainActivity extends BaseActivity {
                 setFragment(R.id.main_activity_body, new PictureGridFragment());
                 break;
             case FILES:
+                setFragment(R.id.main_activity_body, new TextFileListFragment());
                 break;
         }
 
@@ -65,8 +67,13 @@ public class MainActivity extends BaseActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void show(Segues.Show.PictureGrid e) {
+    public void showPictureGrid(Segues.Show.PictureGrid e) {
         showScreen(Screen.PICTURES);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void showTextFileList(Segues.Show.TextFileList e) {
+        showScreen(Screen.FILES);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

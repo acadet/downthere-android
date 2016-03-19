@@ -111,35 +111,35 @@ public abstract class BaseActivity extends Activity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPopupEvent(PopupEvents.Confirm e) {
+    public void onConfirmPopup(PopupEvents.Confirm e) {
         Crouton.cancelAllCroutons();
         Crouton.makeText(this, e.message, Style.CONFIRM).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPopupEvent(PopupEvents.Info e) {
+    public void onInfoPopup(PopupEvents.Info e) {
         Crouton.cancelAllCroutons();
         Crouton.makeText(this, e.message, Style.INFO).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onPopupEvent(PopupEvents.Alert e) {
+    public void onAlertPopup(PopupEvents.Alert e) {
         Crouton.cancelAllCroutons();
         Crouton.makeText(this, e.message, Style.ALERT).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSpinnerEvent(SpinnerEvents.Show e) {
+    public void onSpinnerShow(SpinnerEvents.Show e) {
         spinner.show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSpinnerEvent(SpinnerEvents.ShowImmediately e) {
+    public void onSpinnerShowImmediately(SpinnerEvents.ShowImmediately e) {
         spinner.show(false);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onSpinnerEvent(SpinnerEvents.Hide e) {
+    public void onSpinnerHide(SpinnerEvents.Hide e) {
         spinner.hide();
     }
 }
