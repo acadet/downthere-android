@@ -21,6 +21,7 @@ public class MainActivity extends BaseActivity {
         PICTURES, FILES
     }
 
+    private Screen        currentScreen;
     private Stack<Screen> history;
 
     @Bind(R.id.main_activity_body)
@@ -37,6 +38,11 @@ public class MainActivity extends BaseActivity {
             case FILES:
                 break;
         }
+
+        if (currentScreen != null) {
+            history.add(currentScreen);
+        }
+        currentScreen = screen;
     }
 
     @Override
