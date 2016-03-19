@@ -33,17 +33,6 @@ public abstract class BaseFragment extends Fragment {
     @Inject
     public IDataReadingBLL dataReadingBLL;
 
-    public abstract class Subscriber<T> extends rx.Subscriber<T> {
-        @Override
-        public void onCompleted() {
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-        }
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

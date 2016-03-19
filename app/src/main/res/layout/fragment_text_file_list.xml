@@ -25,7 +25,7 @@
 
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/text_file_list_fragment_grid_wrapper"
+        android:id="@+id/text_file_list_fragment_list_wrapper"
         android:visibility="gone"
         style="@style/MatchParent"
         >

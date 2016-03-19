@@ -19,6 +19,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -33,7 +34,7 @@ public class PictureGridFragment extends BaseFragment {
     private PictureGridAdapter gridAdapter;
 
     @Bind(R.id.picture_grid_fragment_no_content_wrapper)
-    View noMessageWrapper;
+    View noContentWrapper;
 
     @Bind(R.id.picture_grid_fragment_grid_wrapper)
     SwipeRefreshLayout gridViewWrapper;
@@ -46,8 +47,6 @@ public class PictureGridFragment extends BaseFragment {
             listPicturesByDateDescSubscription.unsubscribe();
         }
 
-        showSpinner();
-
         dataReadingBLL
             .refreshPicturesByDateDesc()
             .observeOn(AndroidSchedulers.mainThread())
@@ -56,37 +55,32 @@ public class PictureGridFragment extends BaseFragment {
                 public void onNext(List<PictureBLLDTO> pictures) {
                     if (pictures.isEmpty()) {
                         gridViewWrapper.setVisibility(View.GONE);
-                        noMessageWrapper.setVisibility(View.VISIBLE);
+                        noContentWrapper.setVisibility(View.VISIBLE);
                     } else {
                         gridAdapter.setItems(pictures);
                         if (hasCurrentlyNoContent) {
                             gridViewWrapper.setVisibility(View.VISIBLE);
-                            noMessageWrapper.setVisibility(View.GONE);
+                            noContentWrapper.setVisibility(View.GONE);
                         }
                     }
                 }
 
                 @Override
                 public void onCompleted() {
-                    super.onCompleted();
-                    if (!hasCurrentlyNoContent) {
-                        gridViewWrapper.setRefreshing(false);
-                    }
-                    hideSpinner();
+                    gridViewWrapper.setRefreshing(false);
                 }
 
                 @Override
                 public void onError(Throwable e) {
-                    super.onError(e);
                     if (e instanceof BLLErrors.NoConnection) {
                         inform(getString(R.string.no_connection_error));
+                    } else if (e instanceof BLLErrors.InternalServerError) {
+                        alert(getString(R.string.internal_server_error));
                     } else {
                         alert(e.getMessage());
                     }
-                    if (!hasCurrentlyNoContent) {
-                        gridViewWrapper.setRefreshing(false);
-                    }
-                    hideSpinner();
+
+                    gridViewWrapper.setRefreshing(false);
                 }
             });
     }
@@ -102,10 +96,6 @@ public class PictureGridFragment extends BaseFragment {
         gridAdapter = new PictureGridAdapter(getActivity());
         gridView.setAdapter(gridAdapter);
 
-        if (listPicturesByDateDescSubscription != null) {
-            listPicturesByDateDescSubscription.unsubscribe();
-        }
-
         showSpinner();
         listPicturesByDateDescSubscription =
             dataReadingBLL
@@ -116,23 +106,21 @@ public class PictureGridFragment extends BaseFragment {
                     public void onNext(List<PictureBLLDTO> pictures) {
                         if (pictures.isEmpty()) {
                             gridViewWrapper.setVisibility(View.GONE);
-                            noMessageWrapper.setVisibility(View.VISIBLE);
+                            noContentWrapper.setVisibility(View.VISIBLE);
                         } else {
                             gridAdapter.setItems(pictures);
                             gridViewWrapper.setVisibility(View.VISIBLE);
-                            noMessageWrapper.setVisibility(View.GONE);
+                            noContentWrapper.setVisibility(View.GONE);
                         }
                     }
 
                     @Override
                     public void onCompleted() {
-                        super.onCompleted();
                         hideSpinner();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        super.onError(e);
                         if (e instanceof BLLErrors.NoConnection) {
                             inform(getString(R.string.no_connection_error));
                         } else if (e instanceof BLLErrors.InternalServerError) {
@@ -159,6 +147,7 @@ public class PictureGridFragment extends BaseFragment {
 
     @OnClick(R.id.picture_grid_fragment_no_content_refresher)
     public void onManualRefreshWhenNoContent() {
+        gridViewWrapper.setRefreshing(true);
         refresh(true);
     }
 }
