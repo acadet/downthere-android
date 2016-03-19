@@ -2,7 +2,8 @@
     <string name="app_name">Downthere</string>
 
     <string name="no_content_picture_grid">No pictures :(</string>
-    <string name="picture_grid_refresher">Refresh</string>
+    <string name="no_content_text_file_list">No text files :(</string>
+    <string name="refresh_button">Refresh</string>
 
     <string name="no_connection_error">We are experiencing troubles with your connection</string>
     <string name="internal_server_error">Our server is experience some troubles. Please try again.</string>

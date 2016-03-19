@@ -5,34 +5,33 @@
     >
 
     <LinearLayout
-        android:id="@+id/picture_grid_fragment_no_content_wrapper"
+        android:id="@+id/text_file_list_fragment_no_content_wrapper"
         android:layout_centerInParent="true"
         style="@style/MatchParentWrapContent.Vertical"
         >
 
         <TextView
-            android:text="@string/no_content_picture_grid"
-            style="@style/NoContentPictureGridFragment"
+            android:text="@string/no_content_text_file_list"
+            style="@style/NoContentTextFileListFragment"
             />
 
         <Button
-            android:id="@+id/picture_grid_fragment_no_content_refresher"
+            android:id="@+id/text_file_fragment_no_content_refresher"
             android:text="@string/refresh_button"
-            style="@style/RefresherPictureGridFragment"
+            style="@style/RefresherTextFileListFragment"
             />
 
     </LinearLayout>
 
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/picture_grid_fragment_grid_wrapper"
+        android:id="@+id/text_file_list_fragment_grid_wrapper"
         android:visibility="gone"
         style="@style/MatchParent"
         >
 
-        <GridView
-            android:id="@+id/picture_grid_fragment_grid"
-            android:numColumns="3"
+        <ListView
+            android:id="@+id/text_file_list_fragment_list"
             style="@style/MatchParentWrapContent"
             />
 

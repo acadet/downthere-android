@@ -56,6 +56,14 @@ public class MainActivity extends BaseActivity {
         setFragment(R.id.main_activity_footer, new FooterFragment());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Clear buses of any stick event to prevent any caching
+        fragmentActivityBus.removeAllStickyEvents();
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void show(Segues.Show.PictureGrid e) {
         showScreen(Screen.PICTURES);
