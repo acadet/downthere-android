@@ -31,7 +31,11 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.main_activity_footer)
     View footer;
 
-    private void showScreen(Screen screen) {
+    private void showScreen(Screen screen, boolean addToStack) {
+        if (currentScreen == screen) {
+            return;
+        }
+
         switch (screen) {
             case PICTURES:
                 setFragment(R.id.main_activity_body, new PictureGridFragment());
@@ -41,10 +45,14 @@ public class MainActivity extends BaseActivity {
                 break;
         }
 
-        if (currentScreen != null) {
+        if (currentScreen != null && addToStack) {
             history.add(currentScreen);
         }
         currentScreen = screen;
+    }
+
+    private void showScreen(Screen screen) {
+        showScreen(screen, true);
     }
 
     @Override
@@ -87,7 +95,7 @@ public class MainActivity extends BaseActivity {
         if (history.isEmpty()) {
             finish();
         } else {
-            showScreen(history.pop());
+            showScreen(history.pop(), false);
         }
     }
 }
