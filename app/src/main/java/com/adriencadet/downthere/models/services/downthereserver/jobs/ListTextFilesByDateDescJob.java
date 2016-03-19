@@ -33,7 +33,7 @@ public class ListTextFilesByDateDescJob {
                         List<TextFileBLLDTO> list;
 
                         list = Stream
-                            .of(api.listPicturesByDateDesc())
+                            .of(api.listTextFilesByDateDesc())
                             .map((a) -> {
                                 return new TextFileBLLDTO()
                                     .setId(a.id)
