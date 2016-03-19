@@ -10,6 +10,7 @@ import com.adriencadet.downthere.models.services.downthereserver.jobs.DownthereS
 import com.adriencadet.downthere.ui.EventBusFactory;
 import com.adriencadet.downthere.ui.activities.BaseActivity;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
+import com.adriencadet.downthere.ui.adapters.TextFileListAdapter;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 
 import javax.inject.Singleton;
@@ -38,6 +39,8 @@ public interface ApplicationComponent {
     void inject(BaseActivity activity);
 
     void inject(PictureGridAdapter pictureGridAdapter);
+
+    void inject(TextFileListAdapter pictureGridAdapter);
 
     void inject(BaseFragment fragment);
 }

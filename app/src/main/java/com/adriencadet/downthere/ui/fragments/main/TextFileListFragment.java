@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
+import com.adriencadet.downthere.ui.adapters.TextFileListAdapter;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 
 import java.util.List;
@@ -91,7 +92,7 @@ public class TextFileListFragment extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_picture_grid, container, false);
         ButterKnife.bind(this, view);
 
-        listAdapter = new TextFileListAdapter();
+        listAdapter = new TextFileListAdapter(getActivity());
         listView.setAdapter(listAdapter);
 
         showSpinner();
