@@ -4,11 +4,12 @@
     >
 
     <FrameLayout
+        android:id="@+id/footer_fragment_picture_trigger"
+        android:background="@color/blue"
         style="@style/HorizontalStretchable"
         >
 
         <ImageView
-            android:id="@+id/footer_fragment_picture_icon"
             android:src="@drawable/picture_icon"
             style="@style/FooterFragmentIcon"
             />
@@ -16,11 +17,11 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/footer_fragment_text_file_trigger"
         style="@style/HorizontalStretchable"
         >
 
         <ImageView
-            android:id="@+id/footer_fragment_text_file_icon"
             android:src="@drawable/file_icon"
             style="@style/FooterFragmentIcon"
             />

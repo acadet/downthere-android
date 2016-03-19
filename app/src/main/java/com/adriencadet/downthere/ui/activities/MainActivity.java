@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.ui.events.Segues;
+import com.adriencadet.downthere.ui.events.ShowingMainScreen;
 import com.adriencadet.downthere.ui.fragments.main.FooterFragment;
 import com.adriencadet.downthere.ui.fragments.main.PictureGridFragment;
 import com.adriencadet.downthere.ui.fragments.main.TextFileListFragment;
@@ -49,6 +50,8 @@ public class MainActivity extends BaseActivity {
             history.add(currentScreen);
         }
         currentScreen = screen;
+
+        fragmentActivityBus.post(new ShowingMainScreen(currentScreen == Screen.PICTURES));
     }
 
     private void showScreen(Screen screen) {
