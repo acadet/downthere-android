@@ -25,7 +25,7 @@ public class GetTextFileContentJob {
                     public void call(Subscriber<? super String> subscriber) {
                         server
                             .getTextFileContent(url)
-                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(Schedulers.newThread())
                             .subscribe(new Observer<String>() {
                                 @Override
                                 public void onCompleted() {
@@ -50,7 +50,7 @@ public class GetTextFileContentJob {
                             });
                     }
                 })
-                .observeOn(Schedulers.newThread());
+                .subscribeOn(Schedulers.newThread());
     }
 
     public Observable<String> get(String url) {

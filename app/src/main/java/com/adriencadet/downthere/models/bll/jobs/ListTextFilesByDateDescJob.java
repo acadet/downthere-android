@@ -38,7 +38,7 @@ public class ListTextFilesByDateDescJob {
                             .isBefore(DateTime.now())) {
                         server
                             .listTextFilesByDateDesc()
-                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(Schedulers.newThread())
                             .subscribe(new Subscriber<List<TextFileBLLDTO>>() {
                                 @Override
                                 public void onCompleted() {
@@ -71,7 +71,7 @@ public class ListTextFilesByDateDescJob {
                     }
                 }
             })
-            .observeOn(Schedulers.newThread());
+            .subscribeOn(Schedulers.newThread());
     }
 
     public Observable<List<TextFileBLLDTO>> get(boolean forceRefresh) {

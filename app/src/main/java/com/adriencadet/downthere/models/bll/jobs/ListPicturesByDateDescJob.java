@@ -38,7 +38,7 @@ public class ListPicturesByDateDescJob {
                             .isBefore(DateTime.now())) {
                         server
                             .listPicturesByDateDesc()
-                            .subscribeOn(Schedulers.newThread())
+                            .observeOn(Schedulers.newThread())
                             .subscribe(new Subscriber<List<PictureBLLDTO>>() {
                                 @Override
                                 public void onCompleted() {
@@ -71,7 +71,7 @@ public class ListPicturesByDateDescJob {
                     }
                 }
             })
-            .observeOn(Schedulers.newThread());
+            .subscribeOn(Schedulers.newThread());
     }
 
     public Observable<List<PictureBLLDTO>> get(boolean forceRefresh) {

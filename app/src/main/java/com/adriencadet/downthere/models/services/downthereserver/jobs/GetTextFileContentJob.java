@@ -38,7 +38,7 @@ public class GetTextFileContentJob {
                     }
                 }
             })
-            .observeOn(Schedulers.newThread());
+            .subscribeOn(Schedulers.newThread());
     }
 
     public Observable<String> get(String url) {
