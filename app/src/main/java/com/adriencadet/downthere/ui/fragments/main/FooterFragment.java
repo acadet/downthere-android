@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.adriencadet.downthere.R;
+import com.adriencadet.downthere.ui.events.Segues;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 
 import butterknife.ButterKnife;
@@ -31,7 +32,7 @@ public class FooterFragment extends BaseFragment {
 
     @OnClick(R.id.footer_fragment_picture_icon)
     public void onPictureIconClick() {
-
+        fragmentActivityBus.post(new Segues.Show.PictureGrid());
     }
 
     @OnClick(R.id.footer_fragment_text_file_icon)

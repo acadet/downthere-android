@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.ui.events.ShowPictureInsightSegue;
+import com.adriencadet.downthere.ui.events.Segues;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
 import com.squareup.picasso.Picasso;
 
@@ -60,7 +60,7 @@ public class PictureInsightFragment extends BaseFragment {
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onInit(ShowPictureInsightSegue e) {
+    public void onInit(Segues.Show.PictureInsight e) {
         Picasso
             .with(getActivity())
             .load(e.picture.getAttachmentURL())

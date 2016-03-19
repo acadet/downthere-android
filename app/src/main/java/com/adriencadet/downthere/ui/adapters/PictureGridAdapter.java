@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.adriencadet.downthere.DownthereApplication;
 import com.adriencadet.downthere.R;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
-import com.adriencadet.downthere.ui.events.ShowPictureInsightSegue;
+import com.adriencadet.downthere.ui.events.Segues;
 import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
@@ -60,7 +60,7 @@ public class PictureGridAdapter extends BaseAdapter<PictureBLLDTO> {
             .into(embeddedPicture);
 
         embeddedPicture.setOnClickListener((v) -> {
-            fragmentActivityBus.postSticky(new ShowPictureInsightSegue(itemAt(position)));
+            fragmentActivityBus.postSticky(new Segues.Show.PictureInsight(itemAt(position)));
         });
 
         return view;
