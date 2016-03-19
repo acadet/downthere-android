@@ -28,7 +28,8 @@ public class GetTextFileContentJob {
                         subscriber.onNext(content);
                         subscriber.onCompleted();
                     } catch (RetrofitError e) {
-                        if (e.getResponse().getStatus() == 502) {
+                        if ((e.getKind() == RetrofitError.Kind.NETWORK && e.getResponse() == null)
+                            || e.getResponse().getStatus() == 502) {
                             subscriber.onError(new DownthereServerErrors.NoConnection());
                         } else {
                             subscriber.onError(new DownthereServerErrors.ServerError());
