@@ -1,6 +1,7 @@
 package com.adriencadet.downthere.ui.events;
 
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
+import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
 
 /**
  * Segues
@@ -26,6 +27,14 @@ public class Segues {
 
             public PictureInsight(PictureBLLDTO picture) {
                 this.picture = picture;
+            }
+        }
+
+        public static class TextFileInsight {
+            public TextFileBLLDTO textFile;
+
+            public TextFileInsight(TextFileBLLDTO textFile) {
+                this.textFile = textFile;
             }
         }
     }

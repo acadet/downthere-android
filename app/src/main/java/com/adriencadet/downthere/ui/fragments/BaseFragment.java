@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.os.Bundle;
 
 import com.adriencadet.downthere.DownthereApplication;
+import com.adriencadet.downthere.R;
+import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.IDataReadingBLL;
 import com.adriencadet.downthere.ui.events.PopupEvents;
 import com.adriencadet.downthere.ui.events.SpinnerEvents;
@@ -13,11 +15,27 @@ import org.greenrobot.eventbus.EventBus;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import rx.Subscriber;
+
 /**
  * BaseFragment
  * <p>
  */
 public abstract class BaseFragment extends Fragment {
+
+    public abstract class BaseSubscriber<T> extends Subscriber<T> {
+        @Override
+        public void onError(Throwable e) {
+            if (e instanceof BLLErrors.NoConnection) {
+                inform(getString(R.string.no_connection_error));
+            } else if (e instanceof BLLErrors.InternalServerError) {
+                inform(getString(R.string.internal_server_error));
+            } else {
+                alert(e.getMessage());
+            }
+        }
+    }
+
     @Inject
     @Named("fragmentActivity")
     public EventBus fragmentActivityBus;
@@ -45,7 +63,6 @@ public abstract class BaseFragment extends Fragment {
 
     public void confirm(String message) {
         popupBus.post(new PopupEvents.Confirm(message));
-
     }
 
     public void alert(String message) {

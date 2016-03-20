@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    style="@style/MatchParent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <ScrollView
+        style="@style/ScrollViewTextFileInsight"
+        >
+
+        <LinearLayout
+            style="@style/MatchParentWrapContent.Vertical"
+            >
+
+            <TextView
+                android:id="@+id/text_file_insight_filename"
+                style="@style/FilenameTextFileInsight"
+                tools:text="Title"
+                />
+
+            <TextView
+                android:id="@+id/text_file_insight_date"
+                style="@style/DateTextFileInsight"
+                tools:text="Posted 5 minutes ago"
+                />
+
+            <TextView
+                android:id="@+id/text_file_insight_textarea"
+                style="@style/TextareaTextFileInsight"
+                tools:text="Textarea"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

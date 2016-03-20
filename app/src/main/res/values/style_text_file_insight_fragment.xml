@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ScrollViewTextFileInsight" parent="MatchParent">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="FilenameTextFileInsight" parent="MatchParentWrapContent">
+        <item name="android:padding">16dp</item>
+
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="DateTextFileInsight" parent="MatchParentWrapContent">
+        <item name="android:padding">16dp</item>
+
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:gravity">right</item>
+    </style>
+
+    <style name="TextareaTextFileInsight" parent="MatchParentWrapContent">
+        <item name="android:padding">16dp</item>
+
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
