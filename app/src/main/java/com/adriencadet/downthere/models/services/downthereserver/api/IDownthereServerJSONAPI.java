@@ -6,14 +6,12 @@ import com.adriencadet.downthere.models.services.downthereserver.dto.TextFileSer
 import java.util.List;
 
 import retrofit.http.GET;
-import retrofit.http.Headers;
-import retrofit.http.Path;
 
 /**
- * IDownthereServerAPI
+ * IDownthereServerJSONAPI
  * <p>
  */
-public interface IDownthereServerAPI {
+public interface IDownthereServerJSONAPI {
     String FORMAT             = ".json";
     String PICTURE_ENDPOINT   = "/pictures";
     String TEXT_FILE_ENDPOINT = "/text_files";
@@ -23,10 +21,4 @@ public interface IDownthereServerAPI {
 
     @GET(TEXT_FILE_ENDPOINT + FORMAT)
     List<TextFileServerDTO> listTextFilesByDateDesc();
-
-    @Headers({
-        "Content-Type: application/text"
-    })
-    @GET("{url}")
-    String getTextFileContent(@Path("url") String url);
 }

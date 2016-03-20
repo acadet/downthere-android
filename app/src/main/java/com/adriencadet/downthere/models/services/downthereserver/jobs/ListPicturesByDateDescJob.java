@@ -3,7 +3,7 @@ package com.adriencadet.downthere.models.services.downthereserver.jobs;
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerAPI;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerJSONAPI;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
@@ -24,7 +24,7 @@ import timber.log.Timber;
 public class ListPicturesByDateDescJob {
     private Observable<List<PictureBLLDTO>> observable;
 
-    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerAPI api) {
+    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerJSONAPI api) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<PictureBLLDTO>>() {
                 @Override

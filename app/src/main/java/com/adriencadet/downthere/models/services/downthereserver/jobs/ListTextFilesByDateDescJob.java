@@ -3,7 +3,7 @@ package com.adriencadet.downthere.models.services.downthereserver.jobs;
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerAPI;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerJSONAPI;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
@@ -24,7 +24,7 @@ import timber.log.Timber;
 public class ListTextFilesByDateDescJob {
     private Observable<List<TextFileBLLDTO>> observable;
 
-    public ListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerAPI api) {
+    public ListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerJSONAPI api) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<TextFileBLLDTO>>() {
                 @Override

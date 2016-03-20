@@ -15,11 +15,20 @@ import retrofit.converter.GsonConverter;
 @Module
 public class DownthereServerAPIFactory {
     @Provides
-    public IDownthereServerAPI provideAPI(ApplicationConfiguration configuration) {
+    public IDownthereServerJSONAPI provideJSONAPI(ApplicationConfiguration configuration) {
         return new RestAdapter.Builder()
             .setEndpoint(configuration.SERVER_ENDPOINT)
             .setConverter(new GsonConverter(new GsonBuilder().create()))
             .build()
-            .create(IDownthereServerAPI.class);
+            .create(IDownthereServerJSONAPI.class);
+    }
+
+    @Provides
+    public IDownthereServerPlainAPI providePlainAPI(ApplicationConfiguration configuration) {
+        return new RestAdapter.Builder()
+            .setEndpoint(configuration.SERVER_ENDPOINT)
+            .setConverter(new StringConverter())
+            .build()
+            .create(IDownthereServerPlainAPI.class);
     }
 }

@@ -1,7 +1,8 @@
 package com.adriencadet.downthere.models.services.downthereserver.jobs;
 
+import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerAPI;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerPlainAPI;
 
 import retrofit.RetrofitError;
 import rx.Observable;
@@ -15,14 +16,15 @@ import timber.log.Timber;
  */
 public class GetTextFileContentJob {
     private Observable<String> observable;
-    private String             url;
+    private String             fullURL;
 
-    public GetTextFileContentJob(IDownthereServerAPI api) {
+    public GetTextFileContentJob(ApplicationConfiguration configuration, IDownthereServerPlainAPI api) {
         observable = Observable
             .create(new Observable.OnSubscribe<String>() {
                 @Override
                 public void call(Subscriber<? super String> subscriber) {
                     try {
+                        String url = fullURL.substring(configuration.SERVER_ENDPOINT.length() + 1, fullURL.length());
                         String content = api.getTextFileContent(url);
 
                         subscriber.onNext(content);
@@ -43,7 +45,7 @@ public class GetTextFileContentJob {
     }
 
     public Observable<String> get(String url) {
-        this.url = url;
+        this.fullURL = url;
         return observable;
     }
 }
