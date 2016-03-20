@@ -98,7 +98,7 @@ public class TextFileInsightFragment extends BaseFragment {
                             .with(Techniques.FadeIn)
                             .duration(500)
                             .playOn(textareaView);
-
+                        hideNotification();
                     }
 
                     @Override

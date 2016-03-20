@@ -69,6 +69,10 @@ public abstract class BaseFragment extends Fragment {
         popupBus.post(new PopupEvents.Alert(message));
     }
 
+    public void hideNotification() {
+        popupBus.post(new PopupEvents.Hide());
+    }
+
     public void showSpinner() {
         spinnerBus.post(new SpinnerEvents.Show());
     }

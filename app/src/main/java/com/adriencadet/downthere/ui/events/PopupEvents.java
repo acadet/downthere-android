@@ -33,4 +33,7 @@ public class PopupEvents {
             super(message);
         }
     }
+
+    public static class Hide {
+    }
 }

@@ -129,6 +129,11 @@ public abstract class BaseActivity extends Activity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onHidePopup(PopupEvents.Hide e) {
+        Crouton.clearCroutonsForActivity(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSpinnerShow(SpinnerEvents.Show e) {
         spinner.show();
     }
