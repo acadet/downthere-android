@@ -70,11 +70,15 @@ public class PictureInsightFragment extends BaseFragment {
 
         nameView.setText(e.picture.getName());
         latestUpdateView.setText(
-            DateUtils
-                .getRelativeTimeSpanString(
-                    e.picture.getUpdatedAt().toDate().getTime(),
-                    DateTime.now().toDate().getTime(),
-                    DateUtils.MINUTE_IN_MILLIS
+            getResources()
+                .getString(
+                    R.string.latest_update_prefix,
+                    DateUtils
+                        .getRelativeTimeSpanString(
+                            e.picture.getUpdatedAt().toDate().getTime(),
+                            DateTime.now().toDate().getTime(),
+                            DateUtils.MINUTE_IN_MILLIS
+                        )
                 )
         );
     }

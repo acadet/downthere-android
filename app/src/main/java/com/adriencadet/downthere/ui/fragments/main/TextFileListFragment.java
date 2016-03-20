@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
 import com.adriencadet.downthere.ui.adapters.TextFileListAdapter;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
@@ -19,7 +18,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -49,7 +47,7 @@ public class TextFileListFragment extends BaseFragment {
         dataReadingBLL
             .refreshTextFilesByDateDesc()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<List<TextFileBLLDTO>>() {
+            .subscribe(new BaseSubscriber<List<TextFileBLLDTO>>() {
                 @Override
                 public void onCompleted() {
                     listViewWrapper.setRefreshing(false);
@@ -57,14 +55,7 @@ public class TextFileListFragment extends BaseFragment {
 
                 @Override
                 public void onError(Throwable e) {
-                    if (e instanceof BLLErrors.NoConnection) {
-                        inform(getString(R.string.no_connection_error));
-                    } else if (e instanceof BLLErrors.InternalServerError) {
-                        alert(getString(R.string.internal_server_error));
-                    } else {
-                        alert(e.getMessage());
-                    }
-
+                    super.onError(e);
                     listViewWrapper.setRefreshing(false);
                 }
 
@@ -109,7 +100,7 @@ public class TextFileListFragment extends BaseFragment {
             dataReadingBLL
                 .listTextFilesByDateDesc()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<TextFileBLLDTO>>() {
+                .subscribe(new BaseSubscriber<List<TextFileBLLDTO>>() {
                     @Override
                     public void onCompleted() {
                         hideSpinner();
@@ -117,13 +108,7 @@ public class TextFileListFragment extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        if (e instanceof BLLErrors.NoConnection) {
-                            inform(getString(R.string.no_connection_error));
-                        } else if (e instanceof BLLErrors.InternalServerError) {
-                            inform(getString(R.string.internal_server_error));
-                        } else {
-                            alert(e.getMessage());
-                        }
+                        super.onError(e);
                         hideSpinner();
                     }
 

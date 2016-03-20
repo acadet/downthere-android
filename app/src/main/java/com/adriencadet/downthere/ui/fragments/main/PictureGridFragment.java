@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.adriencadet.downthere.R;
-import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
 import com.adriencadet.downthere.ui.fragments.BaseFragment;
@@ -19,7 +18,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -50,7 +48,7 @@ public class PictureGridFragment extends BaseFragment {
         dataReadingBLL
             .refreshPicturesByDateDesc()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new Subscriber<List<PictureBLLDTO>>() {
+            .subscribe(new BaseSubscriber<List<PictureBLLDTO>>() {
                 @Override
                 public void onNext(List<PictureBLLDTO> pictures) {
                     if (pictures.isEmpty()) {
@@ -72,14 +70,7 @@ public class PictureGridFragment extends BaseFragment {
 
                 @Override
                 public void onError(Throwable e) {
-                    if (e instanceof BLLErrors.NoConnection) {
-                        inform(getString(R.string.no_connection_error));
-                    } else if (e instanceof BLLErrors.InternalServerError) {
-                        alert(getString(R.string.internal_server_error));
-                    } else {
-                        alert(e.getMessage());
-                    }
-
+                    super.onError(e);
                     gridViewWrapper.setRefreshing(false);
                 }
             });
@@ -110,7 +101,7 @@ public class PictureGridFragment extends BaseFragment {
             dataReadingBLL
                 .listPicturesByDateDesc()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<PictureBLLDTO>>() {
+                .subscribe(new BaseSubscriber<List<PictureBLLDTO>>() {
                     @Override
                     public void onNext(List<PictureBLLDTO> pictures) {
                         if (pictures.isEmpty()) {
@@ -130,13 +121,7 @@ public class PictureGridFragment extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        if (e instanceof BLLErrors.NoConnection) {
-                            inform(getString(R.string.no_connection_error));
-                        } else if (e instanceof BLLErrors.InternalServerError) {
-                            inform(getString(R.string.internal_server_error));
-                        } else {
-                            alert(e.getMessage());
-                        }
+                        super.onError(e);
                         hideSpinner();
                     }
                 });

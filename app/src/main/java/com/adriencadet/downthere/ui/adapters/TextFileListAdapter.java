@@ -42,7 +42,8 @@ public class TextFileListAdapter extends BaseAdapter<TextFileBLLDTO> {
         label = (TextView) view.findViewById(R.id.adapter_text_file_list_label);
 
         label.setText(file.getName());
-        label.setOnClickListener((v) -> fragmentActivityBus.post(new Segues.Show.TextFileInsight(file)));
+
+        view.setOnClickListener((v) -> fragmentActivityBus.postSticky(new Segues.Show.TextFileInsight(file)));
 
         return view;
     }

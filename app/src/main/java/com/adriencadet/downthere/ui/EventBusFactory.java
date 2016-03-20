@@ -1,6 +1,9 @@
 package com.adriencadet.downthere.ui;
 
+import com.adriencadet.downthere.BuildConfig;
+
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.EventBusBuilder;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -14,36 +17,39 @@ import dagger.Provides;
  */
 @Module
 public class EventBusFactory {
+
+    private EventBus buildBus() {
+        EventBusBuilder builder = EventBus.builder();
+
+        builder
+            .logNoSubscriberMessages(false)
+            .sendNoSubscriberEvent(false);
+
+        if (BuildConfig.DEBUG) {
+            builder.throwSubscriberException(true);
+        }
+
+        return builder.build();
+    }
+
     @Provides
     @Singleton
     @Named("fragmentActivity")
     public EventBus provideFragmentActivityBus() {
-        return EventBus
-            .builder()
-            .logNoSubscriberMessages(false)
-            .sendNoSubscriberEvent(false)
-            .build();
+        return buildBus();
     }
 
     @Provides
     @Singleton
     @Named("popup")
     public EventBus providePopupBus() {
-        return EventBus
-            .builder()
-            .logNoSubscriberMessages(false)
-            .sendNoSubscriberEvent(false)
-            .build();
+        return buildBus();
     }
 
     @Provides
     @Singleton
     @Named("spinner")
     public EventBus provideSpinnerBus() {
-        return EventBus
-            .builder()
-            .logNoSubscriberMessages(false)
-            .sendNoSubscriberEvent(false)
-            .build();
+        return buildBus();
     }
 }

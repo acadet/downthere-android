@@ -77,6 +77,15 @@ public class MainActivity extends BaseActivity {
         fragmentActivityBus.removeAllStickyEvents();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (history.isEmpty()) {
+            finish();
+        } else {
+            showScreen(history.pop(), false);
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void showPictureGrid(Segues.Show.PictureGrid e) {
         showScreen(Screen.PICTURES);
@@ -93,12 +102,9 @@ public class MainActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (history.isEmpty()) {
-            finish();
-        } else {
-            showScreen(history.pop(), false);
-        }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void showTextFileInsight(Segues.Show.TextFileInsight e) {
+        Intent intent = new Intent(this, FullScreenActivity.class);
+        startActivity(intent);
     }
 }
