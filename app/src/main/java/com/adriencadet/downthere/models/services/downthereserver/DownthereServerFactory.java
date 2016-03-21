@@ -17,10 +17,10 @@ import dagger.Provides;
 public class DownthereServerFactory {
     @Provides
     @Singleton
-    public IDownthereServer provideServer(
+    public IDownthereService provideService(
         ListPicturesByDateDescJob listPicturesByDateDescJob,
         ListTextFilesByDateDescJob listTextFilesByDateDescJob,
         GetTextFileContentJob getTextFileContentJob) {
-        return new DownthereServer(listPicturesByDateDescJob, listTextFilesByDateDescJob, getTextFileContentJob);
+        return new DownthereService(listPicturesByDateDescJob, listTextFilesByDateDescJob, getTextFileContentJob);
     }
 }

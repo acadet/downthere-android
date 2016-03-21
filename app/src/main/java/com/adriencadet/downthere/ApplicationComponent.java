@@ -5,8 +5,8 @@ import com.adriencadet.downthere.models.bll.jobs.BLLJobsFactory;
 import com.adriencadet.downthere.models.bll.serializers.BLLSerializerFactory;
 import com.adriencadet.downthere.models.dao.DAOFactory;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerFactory;
-import com.adriencadet.downthere.models.services.downthereserver.api.DownthereServerAPIFactory;
-import com.adriencadet.downthere.models.services.downthereserver.jobs.DownthereServerJobFactory;
+import com.adriencadet.downthere.models.services.downthereserver.api.DownthereAPIFactory;
+import com.adriencadet.downthere.models.services.downthereserver.jobs.DownthereServiceJobFactory;
 import com.adriencadet.downthere.ui.events.EventBusFactory;
 import com.adriencadet.downthere.ui.activities.BaseActivity;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
@@ -28,8 +28,8 @@ import dagger.Component;
     DAOFactory.class,
     DownthereServerFactory.class,
     EventBusFactory.class,
-    DownthereServerAPIFactory.class,
-    DownthereServerJobFactory.class,
+    DownthereAPIFactory.class,
+    DownthereServiceJobFactory.class,
     BLLSerializerFactory.class,
     BLLJobsFactory.class
 })

@@ -45,35 +45,36 @@ public class PictureGridFragment extends BaseFragment {
             listPicturesByDateDescSubscription.unsubscribe();
         }
 
-        dataReadingBLL
-            .refreshPicturesByDateDesc()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new BaseSubscriber<List<PictureBLLDTO>>() {
-                @Override
-                public void onNext(List<PictureBLLDTO> pictures) {
-                    if (pictures.isEmpty()) {
-                        gridViewWrapper.setVisibility(View.GONE);
-                        noContentWrapper.setVisibility(View.VISIBLE);
-                    } else {
-                        gridAdapter.setItems(pictures);
-                        if (hasCurrentlyNoContent) {
-                            gridViewWrapper.setVisibility(View.VISIBLE);
-                            noContentWrapper.setVisibility(View.GONE);
+        listPicturesByDateDescSubscription =
+            dataReadingBLL
+                .refreshPicturesByDateDesc()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<List<PictureBLLDTO>>() {
+                    @Override
+                    public void onNext(List<PictureBLLDTO> pictures) {
+                        if (pictures.isEmpty()) {
+                            gridViewWrapper.setVisibility(View.GONE);
+                            noContentWrapper.setVisibility(View.VISIBLE);
+                        } else {
+                            gridAdapter.setItems(pictures);
+                            if (hasCurrentlyNoContent) {
+                                gridViewWrapper.setVisibility(View.VISIBLE);
+                                noContentWrapper.setVisibility(View.GONE);
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onCompleted() {
-                    gridViewWrapper.setRefreshing(false);
-                }
+                    @Override
+                    public void onCompleted() {
+                        gridViewWrapper.setRefreshing(false);
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    super.onError(e);
-                    gridViewWrapper.setRefreshing(false);
-                }
-            });
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        gridViewWrapper.setRefreshing(false);
+                    }
+                });
     }
 
     @Nullable

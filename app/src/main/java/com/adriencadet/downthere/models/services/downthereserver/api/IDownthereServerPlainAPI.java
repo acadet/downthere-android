@@ -7,6 +7,7 @@ import retrofit.http.Path;
 /**
  * IDownthereServerPlainAPI
  * <p>
+ * For fetching text files only
  */
 public interface IDownthereServerPlainAPI {
     @Headers({

@@ -1,20 +1,18 @@
 package com.adriencadet.downthere.models.services.downthereserver.jobs;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
-import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
 import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerPlainAPI;
 
 import retrofit.RetrofitError;
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
-import timber.log.Timber;
 
 /**
  * GetTextFileContentJob
  * <p>
  */
-public class GetTextFileContentJob {
+public class GetTextFileContentJob extends RetrofitJob {
     private Observable<String> observable;
     private String             fullURL;
 
@@ -30,14 +28,7 @@ public class GetTextFileContentJob {
                         subscriber.onNext(content);
                         subscriber.onCompleted();
                     } catch (RetrofitError e) {
-                        if ((e.getKind() == RetrofitError.Kind.NETWORK && e.getResponse() == null)
-                            || e.getResponse().getStatus() == 502) {
-                            subscriber.onError(new DownthereServerErrors.NoConnection());
-                        } else {
-                            subscriber.onError(new DownthereServerErrors.ServerError());
-                        }
-
-                        Timber.e(e, "Failed to GetTextFileContent");
+                        handleError(e, subscriber);
                     }
                 }
             })

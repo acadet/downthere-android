@@ -1,10 +1,10 @@
 package com.adriencadet.downthere.models.services.downthereserver.dto;
 
 /**
- * PictureServerDTO
+ * PictureDownthereServiceDTO
  * <p>
  */
-public class PictureServerDTO {
+public class PictureDownthereServiceDTO {
     public static class Attachment {
         public String url;
     }

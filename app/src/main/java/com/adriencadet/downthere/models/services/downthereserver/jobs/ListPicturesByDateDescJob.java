@@ -2,8 +2,7 @@ package com.adriencadet.downthere.models.services.downthereserver.jobs;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
 import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
-import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerJSONAPI;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereJSONAPI;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
@@ -15,16 +14,15 @@ import retrofit.RetrofitError;
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
-import timber.log.Timber;
 
 /**
  * ListPicturesByDateDescJob
  * <p>
  */
-public class ListPicturesByDateDescJob {
+public class ListPicturesByDateDescJob extends RetrofitJob {
     private Observable<List<PictureBLLDTO>> observable;
 
-    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerJSONAPI api) {
+    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereJSONAPI api) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<PictureBLLDTO>>() {
                 @Override
@@ -47,14 +45,7 @@ public class ListPicturesByDateDescJob {
                         subscriber.onNext(list);
                         subscriber.onCompleted();
                     } catch (RetrofitError e) {
-                        if ((e.getKind() == RetrofitError.Kind.NETWORK && e.getResponse() == null)
-                            || e.getResponse().getStatus() == 502) {
-                            subscriber.onError(new DownthereServerErrors.NoConnection());
-                        } else {
-                            subscriber.onError(new DownthereServerErrors.ServerError());
-                        }
-
-                        Timber.e(e, "Failed to ListPicturesByDateDescJob");
+                        handleError(e, subscriber);
                     }
                 }
             })

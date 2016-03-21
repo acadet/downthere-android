@@ -44,35 +44,36 @@ public class TextFileListFragment extends BaseFragment {
             listTextFilesByDateDescSubscription.unsubscribe();
         }
 
-        dataReadingBLL
-            .refreshTextFilesByDateDesc()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(new BaseSubscriber<List<TextFileBLLDTO>>() {
-                @Override
-                public void onCompleted() {
-                    listViewWrapper.setRefreshing(false);
-                }
+        listTextFilesByDateDescSubscription =
+            dataReadingBLL
+                .refreshTextFilesByDateDesc()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseSubscriber<List<TextFileBLLDTO>>() {
+                    @Override
+                    public void onCompleted() {
+                        listViewWrapper.setRefreshing(false);
+                    }
 
-                @Override
-                public void onError(Throwable e) {
-                    super.onError(e);
-                    listViewWrapper.setRefreshing(false);
-                }
+                    @Override
+                    public void onError(Throwable e) {
+                        super.onError(e);
+                        listViewWrapper.setRefreshing(false);
+                    }
 
-                @Override
-                public void onNext(List<TextFileBLLDTO> files) {
-                    if (files.isEmpty()) {
-                        listViewWrapper.setVisibility(View.GONE);
-                        noContentWrapper.setVisibility(View.VISIBLE);
-                    } else {
-                        listAdapter.setItems(files);
-                        if (hasCurrentlyNoContent) {
-                            listViewWrapper.setVisibility(View.VISIBLE);
-                            noContentWrapper.setVisibility(View.GONE);
+                    @Override
+                    public void onNext(List<TextFileBLLDTO> files) {
+                        if (files.isEmpty()) {
+                            listViewWrapper.setVisibility(View.GONE);
+                            noContentWrapper.setVisibility(View.VISIBLE);
+                        } else {
+                            listAdapter.setItems(files);
+                            if (hasCurrentlyNoContent) {
+                                listViewWrapper.setVisibility(View.VISIBLE);
+                                noContentWrapper.setVisibility(View.GONE);
+                            }
                         }
                     }
-                }
-            });
+                });
     }
 
     @Nullable

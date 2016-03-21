@@ -1,7 +1,7 @@
 package com.adriencadet.downthere.models.services.downthereserver.jobs;
 
 import com.adriencadet.downthere.ApplicationConfiguration;
-import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerJSONAPI;
+import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereJSONAPI;
 import com.adriencadet.downthere.models.services.downthereserver.api.IDownthereServerPlainAPI;
 
 import javax.inject.Singleton;
@@ -10,20 +10,20 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * DownthereServerJobFactory
+ * DownthereServiceJobFactory
  * <p>
  */
 @Module
-public class DownthereServerJobFactory {
+public class DownthereServiceJobFactory {
     @Provides
     @Singleton
-    public ListPicturesByDateDescJob provideListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerJSONAPI api) {
+    public ListPicturesByDateDescJob provideListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereJSONAPI api) {
         return new ListPicturesByDateDescJob(configuration, api);
     }
 
     @Provides
     @Singleton
-    public ListTextFilesByDateDescJob provideListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereServerJSONAPI api) {
+    public ListTextFilesByDateDescJob provideListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereJSONAPI api) {
         return new ListTextFilesByDateDescJob(configuration, api);
     }
 

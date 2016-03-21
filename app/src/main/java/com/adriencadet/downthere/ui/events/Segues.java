@@ -19,7 +19,6 @@ public class Segues {
         }
 
         public static class TextFileList {
-
         }
 
         public static class PictureInsight {

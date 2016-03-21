@@ -6,7 +6,7 @@ import com.adriencadet.downthere.models.bll.dto.TextFileBLLDTO;
 import com.adriencadet.downthere.models.bll.serializers.ITextFileBLLDTOSerializer;
 import com.adriencadet.downthere.models.dao.ITextFileDAO;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.IDownthereServer;
+import com.adriencadet.downthere.models.services.downthereserver.IDownthereService;
 
 import org.joda.time.DateTime;
 
@@ -26,7 +26,7 @@ public class ListTextFilesByDateDescJob {
 
     private Observable<List<TextFileBLLDTO>> observable;
 
-    public ListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereServer server, ITextFileDAO textFileDAO, ITextFileBLLDTOSerializer textFileBLLDTOSerializer) {
+    public ListTextFilesByDateDescJob(ApplicationConfiguration configuration, IDownthereService server, ITextFileDAO textFileDAO, ITextFileBLLDTOSerializer textFileBLLDTOSerializer) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<TextFileBLLDTO>>() {
                 @Override
@@ -34,7 +34,7 @@ public class ListTextFilesByDateDescJob {
                     if (isRefreshing
                         || latestPull == null
                         || latestPull
-                            .plusMinutes(configuration.PICTURE_GRID_CACHING_MINUTES)
+                            .plusMinutes(configuration.TEXT_FILE_CACHING_MINUTES)
                             .isBefore(DateTime.now())) {
                         server
                             .listTextFilesByDateDesc()

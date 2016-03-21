@@ -2,7 +2,7 @@ package com.adriencadet.downthere.models.bll.jobs;
 
 import com.adriencadet.downthere.models.bll.BLLErrors;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.IDownthereServer;
+import com.adriencadet.downthere.models.services.downthereserver.IDownthereService;
 
 import rx.Observable;
 import rx.Observer;
@@ -17,7 +17,7 @@ public class GetTextFileContentJob {
     private Observable<String> observable;
     private String             url;
 
-    GetTextFileContentJob(IDownthereServer server) {
+    GetTextFileContentJob(IDownthereService server) {
         observable =
             Observable
                 .create(new Observable.OnSubscribe<String>() {

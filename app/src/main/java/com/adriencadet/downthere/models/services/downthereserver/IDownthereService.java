@@ -8,10 +8,10 @@ import java.util.List;
 import rx.Observable;
 
 /**
- * IDownthereServer
+ * IDownthereService
  * <p>
  */
-public interface IDownthereServer {
+public interface IDownthereService {
     Observable<List<PictureBLLDTO>> listPicturesByDateDesc();
 
     Observable<List<TextFileBLLDTO>> listTextFilesByDateDesc();

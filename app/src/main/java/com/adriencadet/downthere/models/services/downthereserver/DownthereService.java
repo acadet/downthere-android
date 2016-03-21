@@ -11,15 +11,15 @@ import java.util.List;
 import rx.Observable;
 
 /**
- * DownthereServer
+ * DownthereService
  * <p>
  */
-class DownthereServer implements IDownthereServer {
+class DownthereService implements IDownthereService {
     private ListPicturesByDateDescJob  listPicturesByDateDescJob;
     private ListTextFilesByDateDescJob listTextFilesByDateDescJob;
     private GetTextFileContentJob      getTextFileContentJob;
 
-    DownthereServer(ListPicturesByDateDescJob listPicturesByDateDescJob, ListTextFilesByDateDescJob listTextFilesByDateDescJob, GetTextFileContentJob getTextFileContentJob) {
+    DownthereService(ListPicturesByDateDescJob listPicturesByDateDescJob, ListTextFilesByDateDescJob listTextFilesByDateDescJob, GetTextFileContentJob getTextFileContentJob) {
         this.listPicturesByDateDescJob = listPicturesByDateDescJob;
         this.listTextFilesByDateDescJob = listTextFilesByDateDescJob;
         this.getTextFileContentJob = getTextFileContentJob;

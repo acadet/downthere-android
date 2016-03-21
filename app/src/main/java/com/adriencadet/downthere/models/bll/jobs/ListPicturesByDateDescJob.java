@@ -6,7 +6,7 @@ import com.adriencadet.downthere.models.bll.dto.PictureBLLDTO;
 import com.adriencadet.downthere.models.bll.serializers.IPictureBLLDTOSerializer;
 import com.adriencadet.downthere.models.dao.IPictureDAO;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerErrors;
-import com.adriencadet.downthere.models.services.downthereserver.IDownthereServer;
+import com.adriencadet.downthere.models.services.downthereserver.IDownthereService;
 
 import org.joda.time.DateTime;
 
@@ -26,7 +26,7 @@ public class ListPicturesByDateDescJob {
 
     private Observable<List<PictureBLLDTO>> observable;
 
-    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereServer server, IPictureDAO pictureDAO, IPictureBLLDTOSerializer pictureBLLDTOSerializer) {
+    public ListPicturesByDateDescJob(ApplicationConfiguration configuration, IDownthereService server, IPictureDAO pictureDAO, IPictureBLLDTOSerializer pictureBLLDTOSerializer) {
         observable = Observable
             .create(new Observable.OnSubscribe<List<PictureBLLDTO>>() {
                 @Override

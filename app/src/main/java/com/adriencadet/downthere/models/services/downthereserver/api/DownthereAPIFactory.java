@@ -9,18 +9,18 @@ import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
 /**
- * DownthereServerAPIFactory
+ * DownthereAPIFactory
  * <p>
  */
 @Module
-public class DownthereServerAPIFactory {
+public class DownthereAPIFactory {
     @Provides
-    public IDownthereServerJSONAPI provideJSONAPI(ApplicationConfiguration configuration) {
+    public IDownthereJSONAPI provideJSONAPI(ApplicationConfiguration configuration) {
         return new RestAdapter.Builder()
             .setEndpoint(configuration.SERVER_ENDPOINT)
             .setConverter(new GsonConverter(new GsonBuilder().create()))
             .build()
-            .create(IDownthereServerJSONAPI.class);
+            .create(IDownthereJSONAPI.class);
     }
 
     @Provides
