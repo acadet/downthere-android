@@ -4,10 +4,10 @@ import com.adriencadet.downthere.models.bll.BLLFactory;
 import com.adriencadet.downthere.models.bll.jobs.BLLJobsFactory;
 import com.adriencadet.downthere.models.bll.serializers.BLLSerializerFactory;
 import com.adriencadet.downthere.models.dao.DAOFactory;
-import com.adriencadet.downthere.models.services.downthereserver.api.DownthereServerAPIFactory;
 import com.adriencadet.downthere.models.services.downthereserver.DownthereServerFactory;
+import com.adriencadet.downthere.models.services.downthereserver.api.DownthereServerAPIFactory;
 import com.adriencadet.downthere.models.services.downthereserver.jobs.DownthereServerJobFactory;
-import com.adriencadet.downthere.ui.EventBusFactory;
+import com.adriencadet.downthere.ui.events.EventBusFactory;
 import com.adriencadet.downthere.ui.activities.BaseActivity;
 import com.adriencadet.downthere.ui.adapters.PictureGridAdapter;
 import com.adriencadet.downthere.ui.adapters.TextFileListAdapter;
@@ -34,8 +34,6 @@ import dagger.Component;
     BLLJobsFactory.class
 })
 public interface ApplicationComponent {
-    void inject(DownthereApplication application);
-
     void inject(BaseActivity activity);
 
     void inject(PictureGridAdapter pictureGridAdapter);

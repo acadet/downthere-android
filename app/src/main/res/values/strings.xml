@@ -10,5 +10,5 @@
     <string name="info_loading_content">Loading file content...</string>
 
     <string name="no_connection_error">We are experiencing troubles with your connection</string>
-    <string name="internal_server_error">Our server is experience some troubles. Please try again.</string>
+    <string name="internal_server_error">Our server is experiencing some troubles. Please try again.</string>
 </resources>

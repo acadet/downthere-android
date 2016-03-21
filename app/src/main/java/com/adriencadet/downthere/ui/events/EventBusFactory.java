@@ -1,4 +1,4 @@
-package com.adriencadet.downthere.ui;
+package com.adriencadet.downthere.ui.events;
 
 import com.adriencadet.downthere.BuildConfig;
 

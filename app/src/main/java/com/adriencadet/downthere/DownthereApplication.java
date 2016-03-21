@@ -16,9 +16,10 @@ public class DownthereApplication extends Application {
 
         instance = this;
 
-        applicationComponent = DaggerApplicationComponent.builder()
-                                                         .applicationModule(new ApplicationModule(this))
-                                                         .build();
+        applicationComponent = DaggerApplicationComponent
+            .builder()
+            .applicationModule(new ApplicationModule(this))
+            .build();
     }
 
     public static ApplicationComponent getApplicationComponent() {
