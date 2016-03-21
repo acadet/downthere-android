@@ -35,7 +35,7 @@ public class ListPicturesByDateDescJob {
                         || latestPull == null
                         || latestPull
                             .plusMinutes(configuration.PICTURE_GRID_CACHING_MINUTES)
-                            .isBefore(DateTime.now())) {
+                            .isBeforeNow()) {
                         server
                             .listPicturesByDateDesc()
                             .observeOn(Schedulers.newThread())
@@ -66,6 +66,7 @@ public class ListPicturesByDateDescJob {
                                 }
                             });
                     } else {
+                        // Use caching
                         subscriber.onNext(pictureBLLDTOSerializer.fromDAO(pictureDAO.listByDateDesc()));
                         subscriber.onCompleted();
                     }

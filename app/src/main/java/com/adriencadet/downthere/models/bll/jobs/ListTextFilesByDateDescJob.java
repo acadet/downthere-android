@@ -35,7 +35,7 @@ public class ListTextFilesByDateDescJob {
                         || latestPull == null
                         || latestPull
                             .plusMinutes(configuration.TEXT_FILE_CACHING_MINUTES)
-                            .isBefore(DateTime.now())) {
+                            .isBeforeNow()) {
                         server
                             .listTextFilesByDateDesc()
                             .observeOn(Schedulers.newThread())
@@ -66,6 +66,7 @@ public class ListTextFilesByDateDescJob {
                                 }
                             });
                     } else {
+                        // Use caching
                         subscriber.onNext(textFileBLLDTOSerializer.fromDAO(textFileDAO.listByDateDesc()));
                         subscriber.onCompleted();
                     }
