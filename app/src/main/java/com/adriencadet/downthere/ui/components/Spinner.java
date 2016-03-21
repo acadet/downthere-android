@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.adriencadet.downthere.R;
-import com.coshx.chocolatine.utils.Async;
 
 /**
  * Spinner
@@ -42,7 +41,7 @@ public class Spinner {
             delayedShowingHandler = new Handler(Looper.getMainLooper());
             delayedShowingHandler.postDelayed(runnable, 350);
         } else {
-            Async.main(() -> runnable.run());
+            new Handler().post(() -> runnable.run());
         }
 
         timeoutHandler = new Handler(Looper.getMainLooper());
