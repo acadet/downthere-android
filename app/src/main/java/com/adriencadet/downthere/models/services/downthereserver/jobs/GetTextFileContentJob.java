@@ -22,8 +22,7 @@ public class GetTextFileContentJob extends RetrofitJob {
                 @Override
                 public void call(Subscriber<? super String> subscriber) {
                     try {
-                        String url = fullURL.substring(configuration.SERVER_ENDPOINT.length() + 1, fullURL.length());
-                        String content = api.getTextFileContent(url);
+                        String content = api.getTextFileContent(fullURL);
 
                         subscriber.onNext(content);
                         subscriber.onCompleted();

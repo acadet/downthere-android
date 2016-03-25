@@ -36,7 +36,7 @@ public class ListPicturesByDateDescJob extends RetrofitJob {
                                 return new PictureBLLDTO()
                                     .setId(a.id)
                                     .setName(a.name)
-                                    .setAttachmentURL(configuration.SERVER_ENDPOINT + a.attachment.url)
+                                    .setAttachmentURL(a.attachment.url)
                                     .setCreatedAt(new DateTime(a.created_at))
                                     .setUpdatedAt(new DateTime(a.updated_at));
                             })

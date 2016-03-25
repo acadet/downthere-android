@@ -36,7 +36,11 @@ public class ListTextFilesByDateDescJob extends RetrofitJob {
                                 return new TextFileBLLDTO()
                                     .setId(a.id)
                                     .setName(a.name)
-                                    .setAttachmentURL(configuration.SERVER_ENDPOINT + a.attachment.url)
+                                    .setAttachmentURL(a.attachment.url.substring(
+                                        configuration.RAW_TEXT_FILE_SERVER_ENDPOINT.length(),
+                                        a.attachment.url.length()
+                                                      )
+                                    )
                                     .setCreatedAt(new DateTime(a.created_at))
                                     .setUpdatedAt(new DateTime(a.updated_at));
                             })

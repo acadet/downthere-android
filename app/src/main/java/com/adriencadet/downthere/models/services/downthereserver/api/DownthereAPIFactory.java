@@ -26,7 +26,7 @@ public class DownthereAPIFactory {
     @Provides
     public IDownthereServerPlainAPI providePlainAPI(ApplicationConfiguration configuration) {
         return new RestAdapter.Builder()
-            .setEndpoint(configuration.SERVER_ENDPOINT)
+            .setEndpoint(configuration.RAW_TEXT_FILE_SERVER_ENDPOINT)
             .setConverter(new StringConverter())
             .build()
             .create(IDownthereServerPlainAPI.class);
